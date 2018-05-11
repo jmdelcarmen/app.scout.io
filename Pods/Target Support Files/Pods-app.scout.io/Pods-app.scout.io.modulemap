@@ -1,0 +1,6 @@
+framework module Pods_app_scout_io {
+  umbrella header "Pods-app.scout.io-umbrella.h"
+
+  export *
+  module * { export * }
+}
