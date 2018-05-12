@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KeychainAccess
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+        let keychain = Keychain(service: Bundle.main.bundleIdentifier!)
+
+        do {
+            let token = try keychain.get("token")
+            if token != nil {
+                let homeStoryboard = UIStoryboard(name: "HomeStoryboard", bundle: nil)
+                let homeVC = homeStoryboard.instantiateInitialViewController()
+
+                self.window?.rootViewController = homeVC
+            }
+        } catch {}
+
         return true
     }
 

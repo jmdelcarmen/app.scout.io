@@ -1,13 +1,26 @@
 PODS:
   - Alamofire (4.7.2)
+  - AlamofireObjectMapper (5.0.0):
+    - Alamofire (~> 4.1)
+    - ObjectMapper (~> 3.0)
+  - CDYelpFusionKit (1.5.0):
+    - AlamofireObjectMapper (= 5.0.0)
+  - DynamicBlurView (2.0.2)
   - KeychainAccess (3.1.1)
+  - ObjectMapper (3.1.0)
+  - PopupDialog (0.7.1):
+    - DynamicBlurView (~> 2.0)
+  - SkeletonView (1.2)
   - SVProgressHUD (2.2.5)
   - SwiftyJSON (4.1.0)
   - SwipeCellKit (2.2.0)
 
 DEPENDENCIES:
   - Alamofire
+  - CDYelpFusionKit
   - KeychainAccess
+  - PopupDialog
+  - SkeletonView
   - SVProgressHUD
   - SwiftyJSON
   - SwipeCellKit
@@ -15,18 +28,30 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
+    - AlamofireObjectMapper
+    - CDYelpFusionKit
+    - DynamicBlurView
     - KeychainAccess
+    - ObjectMapper
+    - PopupDialog
+    - SkeletonView
     - SVProgressHUD
     - SwiftyJSON
     - SwipeCellKit
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  AlamofireObjectMapper: 5fafc816351cbbc0d486611aaeba7461c0cbad49
+  CDYelpFusionKit: 665cf3881bff25db3a47ca3a4e3497e3a1ea552a
+  DynamicBlurView: aa6db4defc6e537eb86fc5e58dd3991666178399
   KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
+  ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
+  PopupDialog: 39598b7d41719f5c025b4b70e62728bae7734fef
+  SkeletonView: d68962d45d1af038f6a110d2274b183df8f82752
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   SwipeCellKit: 8ae09401e1137566b187980d824310129233c959
 
-PODFILE CHECKSUM: 919458acf8c02d220ff88cab38b97323661d6ab3
+PODFILE CHECKSUM: 34f020c2f778a757570aa67620e858e951505c4c
 
 COCOAPODS: 1.5.0

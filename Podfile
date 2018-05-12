@@ -10,4 +10,7 @@ target 'app.scout.io' do
   pod 'SVProgressHUD'
   pod 'SwipeCellKit'
   pod 'KeychainAccess'
+  pod 'SkeletonView'
+  pod 'PopupDialog'
+  pod 'CDYelpFusionKit'
 end

@@ -1,0 +1,9 @@
+//
+//  Production.xcconfig
+//  app.scout.io
+//
+//  Created by Jesus Marco Del Carmen on 5/10/18.
+//  Copyright © 2018 Jesus Marco Del Carmen. All rights reserved.
+//
+base_url = api.scout.io
+port = 80

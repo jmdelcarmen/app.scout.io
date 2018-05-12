@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -68,11 +67,9 @@
                                     <constraint firstAttribute="bottom" secondItem="Bpe-ak-aCs" secondAttribute="bottom" constant="89" id="Co4-aw-NtC"/>
                                     <constraint firstItem="Bpe-ak-aCs" firstAttribute="leading" secondItem="VNH-Ef-oue" secondAttribute="leading" constant="49" id="DwX-wT-2Gk"/>
                                     <constraint firstAttribute="trailing" secondItem="cbC-M2-LCA" secondAttribute="trailing" id="EVH-Px-rCi"/>
-                                    <constraint firstItem="pC0-3n-gq5" firstAttribute="centerX" secondItem="VNH-Ef-oue" secondAttribute="centerX" id="L2N-IK-tv2"/>
                                     <constraint firstAttribute="bottom" secondItem="ETm-zr-70j" secondAttribute="bottom" id="Pvk-zq-N4a"/>
                                     <constraint firstAttribute="trailing" secondItem="pC0-3n-gq5" secondAttribute="trailing" constant="50" id="Sde-aG-pz4"/>
                                     <constraint firstAttribute="trailing" secondItem="Bpe-ak-aCs" secondAttribute="trailing" constant="50" id="SsK-kD-ixl"/>
-                                    <constraint firstItem="Bpe-ak-aCs" firstAttribute="centerX" secondItem="VNH-Ef-oue" secondAttribute="centerX" id="ZRa-fd-Ovn"/>
                                     <constraint firstItem="ETm-zr-70j" firstAttribute="leading" secondItem="VNH-Ef-oue" secondAttribute="leading" id="cl4-ei-zPU"/>
                                     <constraint firstItem="Bpe-ak-aCs" firstAttribute="top" secondItem="pC0-3n-gq5" secondAttribute="bottom" constant="17" id="dM4-78-qvG"/>
                                     <constraint firstItem="cbC-M2-LCA" firstAttribute="leading" secondItem="VNH-Ef-oue" secondAttribute="leading" id="dWG-f6-bkd"/>
