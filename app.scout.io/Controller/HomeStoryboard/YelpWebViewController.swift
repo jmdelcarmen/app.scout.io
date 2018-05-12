@@ -58,7 +58,7 @@ class YelpWebViewController: UIViewController, WKNavigationDelegate {
         self.webView.load(request)
     }
     
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
         SVProgressHUD.dismiss()
     }
 }

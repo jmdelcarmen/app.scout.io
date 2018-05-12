@@ -10,8 +10,6 @@ import UIKit
 import SkeletonView
 import PopupDialog
 
-// TODO: create enums for segues
-
 class HomeViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
 
@@ -23,6 +21,7 @@ class HomeViewController: UIViewController {
         
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,10 +83,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
     func showCellPressedPopup(selectedCellData: Dictionary<String, Any>, pressedCell: ImageCollectionViewCell) -> Void {
         let popup = PopupDialog(title: selectedCellData["name"] as? String, message: nil)
-        let addToVisitsButton = DefaultButton(title: "Add this place to visits", height: 60, dismissOnTap: true) {
-            // TODO: addToVisitsButton
+        let addToVisitsButton = DefaultButton(title: "Add to visits", height: 60, dismissOnTap: true) {
+            self.performSegue(withIdentifier: "addToVisits", sender: pressedCell)
         }
-
         let viewOnYelpButton = DefaultButton(title: "View on Yelp!", height: 60, dismissOnTap: true) {
             self.performSegue(withIdentifier: "viewOnYelp", sender: pressedCell)
         }
@@ -108,6 +106,8 @@ extension HomeViewController: YelpWebViewControllerDelegate {
 
             destinationVC.delegate = self
             destinationVC.yelpId = yelpId
+        case "addToVisits":
+            break
         default: break
         }
     }
