@@ -21,7 +21,6 @@ class HomeViewController: UIViewController {
         
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,24 +48,21 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCollectionViewCell", for: indexPath) as! ImageCollectionViewCell
 
-        cell.imageView.isSkeletonable = true
-        cell.imageView.layer.shadowOpacity = 0.2
-        cell.imageView.layer.shadowOffset = CGSize(width: 1, height: 1)
-
         cell.viewContainer.isSkeletonable = true
-        cell.viewContainer.layer.shadowOpacity = 0.2
-        cell.viewContainer.layer.shadowOffset = CGSize(width: 1, height: 1)
+        cell.viewContainer.layer.masksToBounds = true
+        cell.viewContainer.layer.cornerRadius = 14
         
-        
+        cell.imageView.isSkeletonable = true
+        cell.imageView.layer.masksToBounds = true
+        cell.imageView.layer.cornerRadius = 14
+
         if let item = self.data?[indexPath.row] {
-            cell.imageView.hideSkeleton()
             cell.imageView.imageFromServerURL(urlString: item["image_url"] as! String)
             
             cell.viewContainer.hideSkeleton()
             cell.labelView.text = item["name"] as? String
             cell.priceLabelView.text = item["price"] as? String
         } else {
-            cell.imageView.showAnimatedGradientSkeleton()
             cell.viewContainer.showAnimatedGradientSkeleton()
         }
 
@@ -96,7 +92,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 }
 
-extension HomeViewController: YelpWebViewControllerDelegate {
+extension HomeViewController: YelpWebViewControllerDelegate, AddToVisitsViewControllerDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "viewOnYelp":
@@ -107,9 +103,20 @@ extension HomeViewController: YelpWebViewControllerDelegate {
             destinationVC.delegate = self
             destinationVC.yelpId = yelpId
         case "addToVisits":
-            break
+            let destinationVC = segue.destination as! AddToVisitsViewController
+            let cellIndexPath = self.collectionView.indexPath(for: sender as! UICollectionViewCell)!
+            let yelpId = self.data?[cellIndexPath.row]["id"] as! String
+
+            destinationVC.delegate = self
+            destinationVC.yelpId = yelpId
         default: break
         }
+    }
+    
+    func onAddedToVisitsSuccess() -> Void {
+        self.data = nil
+        self.collectionView.reloadData()
+        self.loadRecommendations()
     }
 }
 

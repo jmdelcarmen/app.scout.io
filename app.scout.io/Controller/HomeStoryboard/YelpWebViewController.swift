@@ -10,8 +10,7 @@ import UIKit
 import WebKit
 import SVProgressHUD
 
-protocol YelpWebViewControllerDelegate {
-}
+protocol YelpWebViewControllerDelegate {}
 
 class YelpWebViewController: UIViewController, WKNavigationDelegate {
     @IBOutlet weak var webView: WKWebView!

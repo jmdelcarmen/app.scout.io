@@ -143,11 +143,11 @@
 			isa = PBXGroup;
 			children = (
 				33C545D320A525D200D12766 /* HomeViewController.swift */,
+				335E36D120A6D33B00070814 /* AddToVisitsViewController.swift */,
 				33C545DB20A526C800D12766 /* SettingsViewController.swift */,
 				33C545D520A525E500D12766 /* VisitsViewController.swift */,
 				3348F9C220A5803E00ECEB3D /* ImageCollectionViewCell.swift */,
 				335E36CF20A695CE00070814 /* YelpWebViewController.swift */,
-				335E36D120A6D33B00070814 /* AddToVisitsViewController.swift */,
 			);
 			path = HomeStoryboard;
 			sourceTree = "<group>";
@@ -454,7 +454,10 @@
 				DEVELOPMENT_TEAM = 3469GLB273;
 				INFOPLIST_FILE = app.scout.io/Development.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "me.mdelcarmen.app-scout-io";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -471,7 +474,10 @@
 				DEVELOPMENT_TEAM = 3469GLB273;
 				INFOPLIST_FILE = app.scout.io/Production.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "me.mdelcarmen.app-scout-io";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

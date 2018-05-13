@@ -59,7 +59,7 @@ class ScoutRequest {
                      completion: completion)
     }
     
-    func createVisit(withYelpId yelpId: String, attendDate: Date, satisfaction: Int, completion: @escaping (_ error: Error?, _ data: JSON?) -> Void) -> Void {
+    func createVisit(withYelpId yelpId: String, attendDate: String, satisfaction: Int, completion: @escaping (_ error: Error?, _ data: JSON?) -> Void) -> Void {
         self.compose(authenticated: true,
                      path: "/visits",
                      method: .post,
