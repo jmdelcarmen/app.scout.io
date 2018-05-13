@@ -12,5 +12,5 @@ target 'app.scout.io' do
   pod 'KeychainAccess'
   pod 'SkeletonView'
   pod 'PopupDialog'
-  pod 'CDYelpFusionKit'
+  pod 'TPKeyboardAvoiding'
 end

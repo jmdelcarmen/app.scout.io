@@ -12,6 +12,8 @@
 		3348F9C120A5531400ECEB3D /* Development.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3348F9C020A5531400ECEB3D /* Development.plist */; };
 		3348F9C320A5803E00ECEB3D /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3348F9C220A5803E00ECEB3D /* ImageCollectionViewCell.swift */; };
 		335E36D020A695CE00070814 /* YelpWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335E36CF20A695CE00070814 /* YelpWebViewController.swift */; };
+		335E36D220A6D33B00070814 /* AddToVisitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335E36D120A6D33B00070814 /* AddToVisitsViewController.swift */; };
+		3362F67D20A7B32600699485 /* WithFormGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3362F67C20A7B32600699485 /* WithFormGroupViewController.swift */; };
 		336E345920A4E4DA00FA47A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336E345820A4E4DA00FA47A0 /* AppDelegate.swift */; };
 		336E346020A4E4DB00FA47A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 336E345F20A4E4DB00FA47A0 /* Assets.xcassets */; };
 		336E346320A4E4DB00FA47A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 336E346120A4E4DB00FA47A0 /* LaunchScreen.storyboard */; };
@@ -34,6 +36,8 @@
 		3348F9C020A5531400ECEB3D /* Development.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Development.plist; sourceTree = "<group>"; };
 		3348F9C220A5803E00ECEB3D /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		335E36CF20A695CE00070814 /* YelpWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpWebViewController.swift; sourceTree = "<group>"; };
+		335E36D120A6D33B00070814 /* AddToVisitsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToVisitsViewController.swift; sourceTree = "<group>"; };
+		3362F67C20A7B32600699485 /* WithFormGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithFormGroupViewController.swift; sourceTree = "<group>"; };
 		336E345520A4E4DA00FA47A0 /* app.scout.io.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = app.scout.io.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		336E345820A4E4DA00FA47A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		336E345F20A4E4DB00FA47A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -100,8 +104,9 @@
 		33B76B5920A4E795005ADC95 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				33C545D220A525B000D12766 /* HomeStoryboard */,
 				33C545D120A5259800D12766 /* WelcomeStoryboard */,
+				33C545D220A525B000D12766 /* HomeStoryboard */,
+				3362F67C20A7B32600699485 /* WithFormGroupViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -142,6 +147,7 @@
 				33C545D520A525E500D12766 /* VisitsViewController.swift */,
 				3348F9C220A5803E00ECEB3D /* ImageCollectionViewCell.swift */,
 				335E36CF20A695CE00070814 /* YelpWebViewController.swift */,
+				335E36D120A6D33B00070814 /* AddToVisitsViewController.swift */,
 			);
 			path = HomeStoryboard;
 			sourceTree = "<group>";
@@ -243,30 +249,26 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-app.scout.io/Pods-app.scout.io-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/CDYelpFusionKit/CDYelpFusionKit.framework",
 				"${BUILT_PRODUCTS_DIR}/DynamicBlurView/DynamicBlurView.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
+				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CDYelpFusionKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicBlurView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkeletonView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -306,6 +308,8 @@
 				33B76B5E20A4E86C005ADC95 /* WelcomeViewController.swift in Sources */,
 				3348F9B820A54B0600ECEB3D /* ScoutRequest.swift in Sources */,
 				3348F9C320A5803E00ECEB3D /* ImageCollectionViewCell.swift in Sources */,
+				3362F67D20A7B32600699485 /* WithFormGroupViewController.swift in Sources */,
+				335E36D220A6D33B00070814 /* AddToVisitsViewController.swift in Sources */,
 				33B76B6220A4E8AA005ADC95 /* SignupViewController.swift in Sources */,
 				336E345920A4E4DA00FA47A0 /* AppDelegate.swift in Sources */,
 			);
@@ -450,10 +454,7 @@
 				DEVELOPMENT_TEAM = 3469GLB273;
 				INFOPLIST_FILE = app.scout.io/Development.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "me.mdelcarmen.app-scout-io";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -470,10 +471,7 @@
 				DEVELOPMENT_TEAM = 3469GLB273;
 				INFOPLIST_FILE = app.scout.io/Production.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "me.mdelcarmen.app-scout-io";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

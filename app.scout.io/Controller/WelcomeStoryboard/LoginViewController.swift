@@ -13,14 +13,16 @@ import SVProgressHUD
 import KeychainAccess
 
 class LoginViewController: UIViewController {
+    @IBOutlet var containerView: UIView!
     @IBOutlet weak var usernameOrEmailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    
+    @IBOutlet weak var loginButton: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.usernameOrEmailTextField.becomeFirstResponder()
     }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
