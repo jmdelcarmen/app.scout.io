@@ -6,4 +6,4 @@
 //  Copyright © 2018 Jesus Marco Del Carmen. All rights reserved.
 //
 base_url = localhost
-port = 3000
+port = 80
