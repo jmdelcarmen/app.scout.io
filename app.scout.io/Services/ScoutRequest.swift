@@ -87,6 +87,11 @@ class ScoutRequest {
                 case .success:
                     completion(nil, JSON(response.data!))
                 case .failure(let error):
+                    let statusCode = response.response?.statusCode
+
+                    if (statusCode == 401) {
+                        NotificationCenter.default.post(name: NSNotification.Name("UnAuthenticated"), object: nil)
+                    }
                     completion(error, nil)
                 }
         }

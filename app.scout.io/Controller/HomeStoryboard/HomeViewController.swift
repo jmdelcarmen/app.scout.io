@@ -10,7 +10,7 @@ import UIKit
 import SkeletonView
 import PopupDialog
 
-class HomeViewController: UIViewController {
+class HomeViewController: AuthenticatedViewController {
     @IBOutlet weak var collectionView: UICollectionView!
 
     var data: [Dictionary<String, Any>]?

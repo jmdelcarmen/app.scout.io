@@ -13,7 +13,7 @@ protocol AddToVisitsViewControllerDelegate {
     func onAddedToVisitsSuccess() -> Void
 }
 
-class AddToVisitsViewController: UIViewController {
+class AddToVisitsViewController: AuthenticatedViewController {
     @IBOutlet weak var datePickerView: UIDatePicker!
     @IBOutlet weak var sadSmiley: UIImageView!
     @IBOutlet weak var neutralSmiley: UIImageView!

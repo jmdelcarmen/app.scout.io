@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3308A26720A851C700F1C72F /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3308A26620A851C700F1C72F /* PlacesViewController.swift */; };
+		33174A7F20A9D28400EEBB66 /* AuthenticatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33174A7E20A9D28400EEBB66 /* AuthenticatedViewController.swift */; };
 		3348F9B820A54B0600ECEB3D /* ScoutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3348F9B720A54B0600ECEB3D /* ScoutRequest.swift */; };
 		3348F9BC20A54EC400ECEB3D /* Development.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3348F9BB20A54EC400ECEB3D /* Development.xcconfig */; };
 		3348F9C120A5531400ECEB3D /* Development.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3348F9C020A5531400ECEB3D /* Development.plist */; };
 		3348F9C320A5803E00ECEB3D /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3348F9C220A5803E00ECEB3D /* ImageCollectionViewCell.swift */; };
 		335E36D020A695CE00070814 /* YelpWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335E36CF20A695CE00070814 /* YelpWebViewController.swift */; };
 		335E36D220A6D33B00070814 /* AddToVisitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335E36D120A6D33B00070814 /* AddToVisitsViewController.swift */; };
-		3362F67D20A7B32600699485 /* WithFormGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3362F67C20A7B32600699485 /* WithFormGroupViewController.swift */; };
 		336E345920A4E4DA00FA47A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336E345820A4E4DA00FA47A0 /* AppDelegate.swift */; };
 		336E346020A4E4DB00FA47A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 336E345F20A4E4DB00FA47A0 /* Assets.xcassets */; };
 		336E346320A4E4DB00FA47A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 336E346120A4E4DB00FA47A0 /* LaunchScreen.storyboard */; };
@@ -30,6 +31,8 @@
 
 /* Begin PBXFileReference section */
 		329241BF56DBE9106028DF2A /* Pods-app.scout.io.release(development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app.scout.io.release(development).xcconfig"; path = "Pods/Target Support Files/Pods-app.scout.io/Pods-app.scout.io.release(development).xcconfig"; sourceTree = "<group>"; };
+		3308A26620A851C700F1C72F /* PlacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
+		33174A7E20A9D28400EEBB66 /* AuthenticatedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedViewController.swift; sourceTree = "<group>"; };
 		3348F9B720A54B0600ECEB3D /* ScoutRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoutRequest.swift; sourceTree = "<group>"; };
 		3348F9BB20A54EC400ECEB3D /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
 		3348F9BD20A54EFD00ECEB3D /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
@@ -37,7 +40,6 @@
 		3348F9C220A5803E00ECEB3D /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		335E36CF20A695CE00070814 /* YelpWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpWebViewController.swift; sourceTree = "<group>"; };
 		335E36D120A6D33B00070814 /* AddToVisitsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToVisitsViewController.swift; sourceTree = "<group>"; };
-		3362F67C20A7B32600699485 /* WithFormGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithFormGroupViewController.swift; sourceTree = "<group>"; };
 		336E345520A4E4DA00FA47A0 /* app.scout.io.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = app.scout.io.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		336E345820A4E4DA00FA47A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		336E345F20A4E4DB00FA47A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -106,7 +108,6 @@
 			children = (
 				33C545D120A5259800D12766 /* WelcomeStoryboard */,
 				33C545D220A525B000D12766 /* HomeStoryboard */,
-				3362F67C20A7B32600699485 /* WithFormGroupViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -143,9 +144,11 @@
 			isa = PBXGroup;
 			children = (
 				33C545D320A525D200D12766 /* HomeViewController.swift */,
+				3308A26620A851C700F1C72F /* PlacesViewController.swift */,
 				335E36D120A6D33B00070814 /* AddToVisitsViewController.swift */,
 				33C545DB20A526C800D12766 /* SettingsViewController.swift */,
 				33C545D520A525E500D12766 /* VisitsViewController.swift */,
+				33174A7E20A9D28400EEBB66 /* AuthenticatedViewController.swift */,
 				3348F9C220A5803E00ECEB3D /* ImageCollectionViewCell.swift */,
 				335E36CF20A695CE00070814 /* YelpWebViewController.swift */,
 			);
@@ -302,13 +305,14 @@
 			files = (
 				33C545D420A525D200D12766 /* HomeViewController.swift in Sources */,
 				33B76B6020A4E898005ADC95 /* LoginViewController.swift in Sources */,
+				33174A7F20A9D28400EEBB66 /* AuthenticatedViewController.swift in Sources */,
 				33C545DC20A526C800D12766 /* SettingsViewController.swift in Sources */,
 				335E36D020A695CE00070814 /* YelpWebViewController.swift in Sources */,
 				33C545D620A525E500D12766 /* VisitsViewController.swift in Sources */,
 				33B76B5E20A4E86C005ADC95 /* WelcomeViewController.swift in Sources */,
 				3348F9B820A54B0600ECEB3D /* ScoutRequest.swift in Sources */,
+				3308A26720A851C700F1C72F /* PlacesViewController.swift in Sources */,
 				3348F9C320A5803E00ECEB3D /* ImageCollectionViewCell.swift in Sources */,
-				3362F67D20A7B32600699485 /* WithFormGroupViewController.swift in Sources */,
 				335E36D220A6D33B00070814 /* AddToVisitsViewController.swift in Sources */,
 				33B76B6220A4E8AA005ADC95 /* SignupViewController.swift in Sources */,
 				336E345920A4E4DA00FA47A0 /* AppDelegate.swift in Sources */,
