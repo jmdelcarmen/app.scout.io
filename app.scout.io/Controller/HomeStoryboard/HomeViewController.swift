@@ -12,15 +12,21 @@ import PopupDialog
 
 class HomeViewController: AuthenticatedViewController {
     @IBOutlet weak var collectionView: UICollectionView!
-
-    var data: [Dictionary<String, Any>]?
+    @IBOutlet weak var tableView: UITableView!
+    
+    var recommendationData: [Dictionary<String, Any>]? // Collection data
+    var discoverData: [Dictionary<String, Any>]? // Table data
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadRecommendations()
+        self.loadPlacesToDiscover()
         
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.rowHeight = 80.0
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,8 +36,19 @@ class HomeViewController: AuthenticatedViewController {
     func loadRecommendations() -> Void {
         ScoutRequest().getRecommendations(withPage: 1) { (error, response) in
             if error == nil {
-                self.data = (response!["data"].arrayObject as! [Dictionary<String, Any>])
+                self.recommendationData = (response!["data"].arrayObject as! [Dictionary<String, Any>])
                 self.collectionView.reloadData()
+            } else {
+                print(error!)
+            }
+        }
+    }
+    
+    func loadPlacesToDiscover() -> Void {
+        ScoutRequest().getPlacesToDiscover() { (error, response) in
+            if error == nil {
+                self.discoverData = (response!["data"].arrayObject as! [Dictionary<String, Any>])
+                self.tableView.reloadData()
             } else {
                 print(error!)
             }
@@ -42,7 +59,7 @@ class HomeViewController: AuthenticatedViewController {
 // MARK: - Collection view protocol methods
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.data?.count ?? 3
+        return self.recommendationData?.count ?? 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -56,7 +73,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.imageView.layer.masksToBounds = true
         cell.imageView.layer.cornerRadius = 14
 
-        if let item = self.data?[indexPath.row] {
+        if let item = self.recommendationData?[indexPath.row] {
             cell.imageView.imageFromServerURL(urlString: item["image_url"] as! String)
             
             cell.viewContainer.hideSkeleton()
@@ -72,7 +89,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = self.collectionView.cellForItem(at: indexPath) as! ImageCollectionViewCell
-        if let item = self.data?[indexPath.row] {
+        if let item = self.recommendationData?[indexPath.row] {
             self.showCellPressedPopup(selectedCellData: item, pressedCell: cell)
         }
     }
@@ -92,20 +109,58 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 }
 
+// MARK: - Places TableView delegate methods
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.discoverData?.count ?? 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath) as! HomeTableViewCell
+        let cellComponents = [cell.placeImageView, cell.placeTitleLabel, cell.placeLocationLabel, cell.placeOpenStatusLabel, cell.placePriceLabel, cell.placeCategoryViewContainer]
+        
+        if let item = self.discoverData?[indexPath.row] {
+            for cellComponent in cellComponents {
+                cellComponent?.hideSkeleton()
+            }
+            let placeImageURL = item["image_url"] as! String
+            let placeTitle = item["name"] as! String
+            let formattedLocation = ((item["location"] as AnyObject)["display_address"] as! Array).joined(separator: " ")
+            let placeOpenStatusText = item["is_closed"] as! Bool ? "Closed" : "Open"
+            let placeOpenStatusColor = item["is_closed"] as! Bool ? #colorLiteral(red: 0.9215686275, green: 0.231372549, blue: 0.3529411765, alpha: 1) : #colorLiteral(red: 0.1490196078, green: 0.8705882353, blue: 0.5058823529, alpha: 1)
+            let priceText = item["price"] as! String
+
+            cell.placeImageView.imageFromServerURL(urlString: placeImageURL)
+            cell.placeTitleLabel.text = placeTitle
+            cell.placeLocationLabel.text = formattedLocation
+            cell.placeOpenStatusLabel.text = placeOpenStatusText
+            cell.placeOpenStatusLabel.textColor = placeOpenStatusColor
+            cell.placePriceLabel.text = priceText
+        } else {
+            for cellComponent in cellComponents {
+                cellComponent?.showAnimatedGradientSkeleton()
+            }
+        }
+
+        return cell
+    }
+}
+
+// MARK: - YelpWebView handler
 extension HomeViewController: YelpWebViewControllerDelegate, AddToVisitsViewControllerDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "viewOnYelp":
             let destinationVC = segue.destination as! YelpWebViewController
             let cellIndexPath = self.collectionView.indexPath(for: sender as! UICollectionViewCell)!
-            let yelpId = self.data?[cellIndexPath.row]["id"] as! String
+            let yelpId = self.recommendationData?[cellIndexPath.row]["id"] as! String
 
             destinationVC.delegate = self
             destinationVC.yelpId = yelpId
         case "addToVisits":
             let destinationVC = segue.destination as! AddToVisitsViewController
             let cellIndexPath = self.collectionView.indexPath(for: sender as! UICollectionViewCell)!
-            let yelpId = self.data?[cellIndexPath.row]["id"] as! String
+            let yelpId = self.recommendationData?[cellIndexPath.row]["id"] as! String
 
             destinationVC.delegate = self
             destinationVC.yelpId = yelpId
@@ -114,7 +169,7 @@ extension HomeViewController: YelpWebViewControllerDelegate, AddToVisitsViewCont
     }
     
     func onAddedToVisitsSuccess() -> Void {
-        self.data = nil
+        self.recommendationData = nil
         self.collectionView.reloadData()
         self.loadRecommendations()
     }

@@ -51,6 +51,14 @@ class ScoutRequest {
                      completion: completion)
     }
     
+    func getPlacesToDiscover(completion: @escaping (_ error: Error?, _ data: JSON?) -> Void) -> Void {
+        self.compose(authenticated: true,
+                     path: "/discover",
+                     method: .get,
+                     params: [:],
+                     completion: completion)
+    }
+    
     func getVisits(completion: @escaping (_ error: Error?, _ data: JSON?) -> Void) -> Void {
         self.compose(authenticated: true,
                      path: "/visits",
