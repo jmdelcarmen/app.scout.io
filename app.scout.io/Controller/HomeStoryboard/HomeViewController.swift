@@ -81,6 +81,20 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
             }
         }
     }
+    
+    func showCellPressedPopup(selectedCellData: Dictionary<String, Any>, pressedCell: Any) -> Void {
+        let popup = PopupDialog(title: selectedCellData["name"] as? String, message: nil)
+        let addToVisitsButton = DefaultButton(title: "Add to visits", height: 60, dismissOnTap: true) {
+            self.performSegue(withIdentifier: "addToVisits", sender: pressedCell)
+        }
+        let viewOnYelpButton = DefaultButton(title: "View on Yelp!", height: 60, dismissOnTap: true) {
+            self.performSegue(withIdentifier: "viewOnYelp", sender: pressedCell)
+        }
+        
+        popup.addButtons([addToVisitsButton, viewOnYelpButton])
+        
+        self.present(popup, animated: true, completion: nil)
+    }
 }
 
 // MARK: - Collection view protocol methods
@@ -120,20 +134,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             self.showCellPressedPopup(selectedCellData: item, pressedCell: cell)
         }
     }
-
-    func showCellPressedPopup(selectedCellData: Dictionary<String, Any>, pressedCell: ImageCollectionViewCell) -> Void {
-        let popup = PopupDialog(title: selectedCellData["name"] as? String, message: nil)
-        let addToVisitsButton = DefaultButton(title: "Add to visits", height: 60, dismissOnTap: true) {
-            self.performSegue(withIdentifier: "addToVisits", sender: pressedCell)
-        }
-        let viewOnYelpButton = DefaultButton(title: "View on Yelp!", height: 60, dismissOnTap: true) {
-            self.performSegue(withIdentifier: "viewOnYelp", sender: pressedCell)
-        }
-        
-        popup.addButtons([addToVisitsButton, viewOnYelpButton])
-        
-        self.present(popup, animated: true, completion: nil)
-    }
 }
 
 // MARK: - Places TableView delegate methods
@@ -171,6 +171,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
         return cell
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = self.tableView.cellForRow(at: indexPath) as! HomeTableViewCell
+        if let item = self.discoverData?[indexPath.row] {
+            self.showCellPressedPopup(selectedCellData: item, pressedCell: cell)
+        }
+    }
 }
 
 // MARK: - YelpWebView handler
@@ -185,8 +192,19 @@ extension HomeViewController: YelpWebViewControllerDelegate, AddToVisitsViewCont
             destinationVC.delegate = self
             destinationVC.yelpId = yelpId
         case "addToVisits":
+            let senderIsTypeHomeTableViewCell = type(of: sender!) == type(of: HomeTableViewCell())
+            let senderIsTypeImageCollectionViewCell = type(of: sender!) == type(of: ImageCollectionViewCell())
+            var cellIndexPath = IndexPath()
+            
+            if senderIsTypeHomeTableViewCell {
+                cellIndexPath = self.tableView.indexPath(for: sender as! UITableViewCell)!
+            } else if senderIsTypeImageCollectionViewCell {
+                cellIndexPath = self.collectionView.indexPath(for: sender as! UICollectionViewCell)!
+            } else {
+                print("Unidentified sender for addToVisits segue")
+            }
+
             let destinationVC = segue.destination as! AddToVisitsViewController
-            let cellIndexPath = self.collectionView.indexPath(for: sender as! UICollectionViewCell)!
             let yelpId = self.recommendationData?[cellIndexPath.row]["id"] as! String
 
             destinationVC.delegate = self
