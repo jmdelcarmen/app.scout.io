@@ -48,14 +48,16 @@ class ScoutRequest {
                      path: "/recommendations",
                      method: .get,
                      params: ["page": page],
+                     encoding: URLEncoding(destination: .queryString),
                      completion: completion)
     }
     
-    func getPlacesToDiscover(completion: @escaping (_ error: Error?, _ data: JSON?) -> Void) -> Void {
+    func getPlacesToDiscover(withCoords coords: Dictionary<String, Double>, completion: @escaping (_ error: Error?, _ data: JSON?) -> Void) -> Void {
         self.compose(authenticated: true,
                      path: "/discover",
                      method: .get,
-                     params: [:],
+                     params: coords,
+                     encoding: URLEncoding(destination: .queryString),
                      completion: completion)
     }
     
@@ -83,12 +85,12 @@ class ScoutRequest {
                      completion: completion)
     }
 
-    func compose(authenticated: Bool, path: String, method: HTTPMethod, params: Parameters, completion: @escaping (_ error: Error?, _ data: JSON?) -> Void) -> Void {
+    func compose(authenticated: Bool, path: String, method: HTTPMethod, params: Parameters, encoding: URLEncoding? = nil, completion: @escaping (_ error: Error?, _ data: JSON?) -> Void) -> Void {
         let headers: [String:String] = authenticated ? ["Authorization": "Bearer \(ScoutRequest.getJWT())"] : [:]
 
         Alamofire.request(self.base_url + path,method: method,
                           parameters: params,
-                          encoding: JSONEncoding.default,
+                          encoding: encoding ?? JSONEncoding.default,
                           headers: headers)
             .validate(statusCode: 200..<300).responseJSON { (response: DataResponse) in
                 switch response.result {
@@ -96,7 +98,7 @@ class ScoutRequest {
                     completion(nil, JSON(response.data!))
                 case .failure(let error):
                     let statusCode = response.response?.statusCode
-
+                    
                     if (statusCode == 401) {
                         NotificationCenter.default.post(name: NSNotification.Name("UnAuthenticated"), object: nil)
                     }

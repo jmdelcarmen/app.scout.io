@@ -19,8 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
 
         let keychain = Keychain(service: Bundle.main.bundleIdentifier!)
-//        keychain["token"] = nil
-
+        keychain["token"] = nil
         do {
             let token = try keychain.get("token")
             if token != nil {

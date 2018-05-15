@@ -17,10 +17,6 @@ class AuthenticatedViewController: UIViewController {
                                                name: NSNotification.Name(rawValue: "UnAuthenticated"),
                                                object: nil)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
     @objc func onUnAuthenticatedRequest(notification: Notification, sender: Any?) -> Void {
         self.pushToLogin()

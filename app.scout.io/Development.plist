@@ -39,6 +39,10 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Scout needs your location to discover great places</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Scout needs your location to discover great places</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

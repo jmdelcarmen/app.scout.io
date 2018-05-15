@@ -20,9 +20,9 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.usernameOrEmailTextField.becomeFirstResponder()
     }
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
