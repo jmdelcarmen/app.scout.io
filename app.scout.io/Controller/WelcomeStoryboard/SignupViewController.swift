@@ -12,14 +12,16 @@ import SwiftyJSON
 import SVProgressHUD
 import KeychainAccess
 
-class SignupViewController: UIViewController {
+class SignupViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-
+    @IBOutlet weak var signupButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.passwordTextField.delegate = self
         self.emailTextField.becomeFirstResponder()
     }
 
@@ -50,5 +52,12 @@ class SignupViewController: UIViewController {
         let homeVC = homeStoryBoard.instantiateInitialViewController()!
         
         present(homeVC, animated: true, completion: nil)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        self.onSignupPressed(self.signupButton)
+        
+        return true
     }
 }

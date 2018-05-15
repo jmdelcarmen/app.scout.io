@@ -12,7 +12,7 @@ import SwiftyJSON
 import SVProgressHUD
 import KeychainAccess
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var containerView: UIView!
     @IBOutlet weak var usernameOrEmailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -20,7 +20,8 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.passwordTextField.delegate = self
         self.usernameOrEmailTextField.becomeFirstResponder()
     }
 
@@ -54,5 +55,12 @@ class LoginViewController: UIViewController {
         let homeVC = homeStoryBoard.instantiateInitialViewController()!
         
         present(homeVC, animated: true, completion: nil)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        self.onLoginPressed(self.loginButton)
+        
+        return true
     }
 }

@@ -450,6 +450,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="Sk4-tk-aDp" id="vsX-gu-tng"/>
                         <outlet property="passwordTextField" destination="133-zK-WVP" id="Xu5-Vf-yss"/>
+                        <outlet property="signupButton" destination="zQ7-WO-2KQ" id="nXC-1p-EvM"/>
                         <outlet property="usernameTextField" destination="dQi-ws-KbJ" id="xce-EO-KpQ"/>
                     </connections>
                 </viewController>
