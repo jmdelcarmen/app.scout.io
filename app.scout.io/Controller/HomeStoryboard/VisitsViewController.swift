@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import RealmSwift
 
 class VisitsViewController: AuthenticatedViewController {
     @IBOutlet weak var tableView: UITableView!
 
     // TODO: group by month
-    var visitsHistory: [Dictionary<String, Any>]?
+    var visitsHistory: Results<Visit>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,10 +32,10 @@ class VisitsViewController: AuthenticatedViewController {
     func loadVisitsHistory(page: Int) -> Void {
         ScoutRequest().getVisits(withPage: page) { (error, response) in
             if error == nil {
-                self.visitsHistory = (response!["data"].arrayObject as! [Dictionary<String, Any>])
+                self.visitsHistory = response!
                 self.tableView.reloadData()
             } else {
-                print(error)
+                print(error!)
             }
         }
     }
@@ -44,12 +45,12 @@ extension VisitsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "VisitsTableViewCell", for: indexPath) as! VisitsTableViewCell
 
-        if let item = self.visitsHistory?[indexPath.row] {
+        if let visit = self.visitsHistory?[indexPath.row] {
             cell.placeLabel.hideSkeleton()
             cell.attendDateLabel.hideSkeleton()
             
-            cell.placeLabel.text = (item["data"] as AnyObject)["name"] as? String
-            cell.attendDateLabel.text = item["attend_date"] as? String
+            cell.placeLabel.text = visit.name
+//            cell.attendDateLabel.text = visit.attendDate
         } else {
             cell.placeLabel.showSkeleton()
             cell.attendDateLabel.showSkeleton()

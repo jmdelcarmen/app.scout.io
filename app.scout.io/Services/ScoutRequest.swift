@@ -27,6 +27,28 @@ class ScoutRequest {
             return ""
         }
     }
+    
+    func compose(authenticated: Bool, path: String, method: HTTPMethod, params: Parameters, encoding: URLEncoding? = nil, completion: @escaping (_ error: Error?, _ data: JSON?) -> Void) -> Void {
+        let headers: [String:String] = authenticated ? ["Authorization": "Bearer \(ScoutRequest.getJWT())"] : [:]
+        
+        Alamofire.request(self.base_url + path,method: method,
+                          parameters: params,
+                          encoding: encoding ?? JSONEncoding.default,
+                          headers: headers)
+            .validate(statusCode: 200..<300).responseJSON { (response: DataResponse) in
+                switch response.result {
+                case .success:
+                    completion(nil, JSON(response.data!))
+                case .failure(let error):
+                    let statusCode = response.response?.statusCode
+                    
+                    if (statusCode == 401) {
+                        NotificationCenter.default.post(name: NSNotification.Name("UnAuthenticated"), object: nil)
+                    }
+                    completion(error, nil)
+                }
+        }
+    }
 
     // MARK: - Recommendations API
     static func shouldRefetchRecommendations() -> Bool {
@@ -176,7 +198,52 @@ class ScoutRequest {
         defaults.set(refetchMetadata, forKey: defaultsKey)
     }
     
+    static func getRefreshedVisits(data: JSON, completion: @escaping (_ error: Error?, _ data: Results<Visit>?) -> Void) -> Void {
+        let realm = try! Realm()
+        
+        do {
+            try realm.write {
+                realm.delete(realm.objects(Visit.self))
+                for visit in data["data"].arrayValue {
+                    let newVisit = Visit()
+                    newVisit.name = visit["data"]["name"].stringValue
+                    newVisit.yelpId = visit["data"]["id"].stringValue
+                    newVisit.satisfaction = visit["satisfaction"].intValue
+//                    newVisit.attendDate = visit["atted_date"].
+                    // TODO:
+                    realm.add(newVisit)
+                }
+            }
+        } catch let error {
+            print("Error storing fetched visits.")
+            completion(error, nil)
+        }
+        
+        let visits = realm.objects(Visit.self)
+        completion(nil, visits)
+    }
     
+    func getVisits(withPage page: Int, completion: @escaping (_ error: Error?, _ data: Results<Visit>?) -> Void) -> Void {
+        if ScoutRequest.shouldRefetchVisits() {
+            self.compose(authenticated: true, path: "/visits", method: .get, params: ["page": page], encoding: URLEncoding(destination: .queryString)) { (error, data) in
+                ScoutRequest.resetVisitsRefetchMetadata()
+                ScoutRequest.getRefreshedVisits(data: data!, completion: completion)
+            }
+        } else {
+            let realm = try! Realm()
+            completion(nil, realm.objects(Visit.self))
+        }
+    }
+    
+    func createVisit(withYelpId yelpId: String, attendDate: String, satisfaction: Int, completion: @escaping (_ error: Error?, _ data: JSON?) -> Void) -> Void {
+        self.compose(authenticated: true,
+                     path: "/visits",
+                     method: .post,
+                     params: ["yelp_id": yelpId, "attend_date": attendDate, "satisfaction": satisfaction],
+                     completion: completion)
+    }
+    
+    // MARK: - Authetication API
     func login(withUsernameOrEmail usernameOrEmail: String, password: String, completion: @escaping (_ error: Error?, _ data: JSON?) -> Void) -> Void {
         self.compose(authenticated: false,
                      path: "/auth/login",
@@ -194,51 +261,13 @@ class ScoutRequest {
     }
 
     
-    func getVisits(withPage page: Int, completion: @escaping (_ error: Error?, _ data: JSON?) -> Void) -> Void {
-        self.compose(authenticated: true,
-                     path: "/visits",
-                     method: .get,
-                     params: ["page": page],
-                     encoding: URLEncoding(destination: .queryString),
-                     completion: completion)
-    }
-    
-    func createVisit(withYelpId yelpId: String, attendDate: String, satisfaction: Int, completion: @escaping (_ error: Error?, _ data: JSON?) -> Void) -> Void {
-        self.compose(authenticated: true,
-                     path: "/visits",
-                     method: .post,
-                     params: ["yelp_id": yelpId, "attend_date": attendDate, "satisfaction": satisfaction],
-                     completion: completion)
-    }
-    
+    // MARK: - Search API
     func searchBusinesses(withTermAndLocation q: String, location: String, completion: @escaping (_ error: Error?, _ data: JSON?) -> Void) -> Void {
         self.compose(authenticated: true,
                      path: "/search",
                      method: .post,
                      params: ["q": q, "location": location],
                      completion: completion)
-    }
-
-    func compose(authenticated: Bool, path: String, method: HTTPMethod, params: Parameters, encoding: URLEncoding? = nil, completion: @escaping (_ error: Error?, _ data: JSON?) -> Void) -> Void {
-        let headers: [String:String] = authenticated ? ["Authorization": "Bearer \(ScoutRequest.getJWT())"] : [:]
-
-        Alamofire.request(self.base_url + path,method: method,
-                          parameters: params,
-                          encoding: encoding ?? JSONEncoding.default,
-                          headers: headers)
-            .validate(statusCode: 200..<300).responseJSON { (response: DataResponse) in
-                switch response.result {
-                case .success:
-                    completion(nil, JSON(response.data!))
-                case .failure(let error):
-                    let statusCode = response.response?.statusCode
-                    
-                    if (statusCode == 401) {
-                        NotificationCenter.default.post(name: NSNotification.Name("UnAuthenticated"), object: nil)
-                    }
-                    completion(error, nil)
-                }
-        }
     }
 }
 

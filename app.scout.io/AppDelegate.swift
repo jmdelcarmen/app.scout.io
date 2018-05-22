@@ -43,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        print(Realm.Configuration.defaultConfiguration.fileURL)
 //        defaults.removeObject(forKey: "refetchMetadata")
         
+        
         let defaults = UserDefaults.standard
 
         if defaults.object(forKey: "refetchMetadata") == nil {
