@@ -29,6 +29,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Realm.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RealmSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SVProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -44,12 +54,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SwipeCellKit.xcscheme</key>
+		<key>TPKeyboardAvoiding.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>TPKeyboardAvoiding.xcscheme</key>
+		<key>TimelineTableViewCell-TimelineTableViewCell.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>TimelineTableViewCell.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

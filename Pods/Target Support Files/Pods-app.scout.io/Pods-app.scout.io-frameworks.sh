@@ -147,22 +147,26 @@ if [[ "$CONFIGURATION" == "Debug(Development)" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/DynamicBlurView/DynamicBlurView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Realm/Realm.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/TimelineTableViewCell/TimelineTableViewCell.framework"
 fi
 if [[ "$CONFIGURATION" == "Release(Development)" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/DynamicBlurView/DynamicBlurView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Realm/Realm.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/TimelineTableViewCell/TimelineTableViewCell.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

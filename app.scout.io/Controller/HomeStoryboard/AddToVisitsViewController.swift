@@ -15,9 +15,9 @@ protocol AddToVisitsViewControllerDelegate {
 
 class AddToVisitsViewController: AuthenticatedViewController {
     @IBOutlet weak var datePickerView: UIDatePicker!
-    @IBOutlet weak var sadSmiley: UIImageView!
-    @IBOutlet weak var neutralSmiley: UIImageView!
-    @IBOutlet weak var happySmiley: UIImageView!
+    @IBOutlet weak var yesButton: UIButton!
+    @IBOutlet weak var maybeButton: UIButton!
+    @IBOutlet weak var noButton: UIButton!
     
     var delegate: AddToVisitsViewControllerDelegate?
     var yelpId: String?
@@ -31,13 +31,13 @@ class AddToVisitsViewController: AuthenticatedViewController {
         super.didReceiveMemoryWarning()
     }
     
-    func onSelectSmiley(tag: Int) -> Void {
-        let smileys: [UIImageView] = [sadSmiley, neutralSmiley, happySmiley]
-        for smiley in smileys {
-            smiley.alpha = 0.5
+    func onWillReturnButtonOptionPressed(tag: Int) -> Void {
+        let willReturnOptionButtons: [UIButton] = [noButton, maybeButton, yesButton]
+        for optionButton in willReturnOptionButtons {
+            optionButton.alpha = 0.5
         }
         
-        smileys[tag - 1].alpha = 1
+        willReturnOptionButtons[tag - 1].alpha = 1
         self.satisfaction = tag
     }
     
@@ -63,16 +63,15 @@ class AddToVisitsViewController: AuthenticatedViewController {
             }
         }
     }
-
-    @IBAction func onSadSmileyPressed(_ sender: UIButton) {
-        self.onSelectSmiley(tag: sender.tag)
+    
+    @IBAction func onNoPressed(_ sender: UIButton) {
+        self.onWillReturnButtonOptionPressed(tag: sender.tag)
     }
-
-    @IBAction func onNeutralSmileyPressed(_ sender: UIButton) {
-        self.onSelectSmiley(tag: sender.tag)
+    @IBAction func onMaybePressed(_ sender: UIButton) {
+        self.onWillReturnButtonOptionPressed(tag: sender.tag)
     }
-
-    @IBAction func onHappySmileyPressed(_ sender: UIButton) {
-        self.onSelectSmiley(tag: sender.tag)
+    @IBAction func onYesPressed(_ sender: UIButton) {
+        self.onWillReturnButtonOptionPressed(tag: sender.tag)
     }
+    
 }

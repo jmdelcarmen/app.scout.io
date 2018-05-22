@@ -8,9 +8,10 @@ target 'app.scout.io' do
   pod 'Alamofire'
   pod 'SwiftyJSON'
   pod 'SVProgressHUD'
-  pod 'SwipeCellKit'
   pod 'KeychainAccess'
   pod 'SkeletonView'
   pod 'PopupDialog'
   pod 'TPKeyboardAvoiding'
+  pod 'TimelineTableViewCell'
+  pod 'RealmSwift'
 end

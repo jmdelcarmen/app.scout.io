@@ -195,17 +195,20 @@ extension HomeViewController: YelpWebViewControllerDelegate, AddToVisitsViewCont
             let senderIsTypeHomeTableViewCell = type(of: sender!) == type(of: HomeTableViewCell())
             let senderIsTypeImageCollectionViewCell = type(of: sender!) == type(of: ImageCollectionViewCell())
             var cellIndexPath = IndexPath()
+            var dataSource = [Dictionary<String, Any>]()
             
             if senderIsTypeHomeTableViewCell {
                 cellIndexPath = self.tableView.indexPath(for: sender as! UITableViewCell)!
+                dataSource = self.discoverData!
             } else if senderIsTypeImageCollectionViewCell {
                 cellIndexPath = self.collectionView.indexPath(for: sender as! UICollectionViewCell)!
+                dataSource = self.recommendationData!
             } else {
                 print("Unidentified sender for addToVisits segue")
             }
 
             let destinationVC = segue.destination as! AddToVisitsViewController
-            let yelpId = self.recommendationData?[cellIndexPath.row]["id"] as! String
+            let yelpId = dataSource[cellIndexPath.row]["id"] as! String
 
             destinationVC.delegate = self
             destinationVC.yelpId = yelpId

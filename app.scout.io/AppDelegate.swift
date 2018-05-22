@@ -8,6 +8,7 @@
 
 import UIKit
 import KeychainAccess
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,8 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
+        // Instantiate Keychain
         let keychain = Keychain(service: Bundle.main.bundleIdentifier!)
-
         do {
             let token = try keychain.get("token")
             if token != nil {
@@ -28,7 +29,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
                 self.window?.rootViewController = homeVC
             }
-        } catch {}
+        } catch {
+            print("Error instantiating keychain")
+        }
+        
+        // Instantiate Realm
+        do {
+            _ = try Realm()
+        } catch {
+            print("Error instantiating Realm")
+        }
+        
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: "refetchMetadata")
+        if defaults.object(forKey: "refetchMetadata") == nil {
+            let dict = [
+                "recommendations": ["shouldRefetch": true, "refetchedAt": NSDate()],
+                "visits": ["shouldRefetch": true, "refetchedAt": NSDate()],
+            ]
+
+            defaults.set(dict, forKey: "refetchMetadata")
+        }
 
         return true
     }

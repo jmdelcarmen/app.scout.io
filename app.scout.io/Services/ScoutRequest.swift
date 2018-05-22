@@ -10,10 +10,11 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 import KeychainAccess
+import RealmSwift
 
 class ScoutRequest {
     let base_url: String = Bundle.main.infoDictionary!["base_url"] as! String
-    
+
     static func storeJWT(_ token: String) -> Void {
         let keychain = Keychain(service: Bundle.main.bundleIdentifier!)
         keychain["token"] = token
@@ -27,6 +28,87 @@ class ScoutRequest {
         }
     }
 
+    // MARK: - Recommendations API
+    static func shouldRefetchRecommendations() -> Bool {
+        let defaultsKey = "refetchMetadata"
+        let defaults = UserDefaults.standard
+        let refetchMetadata = defaults.object(forKey: defaultsKey) as! Dictionary<String, Dictionary<String, Any>>
+
+        return (refetchMetadata["recommendations"]!["shouldRefetch"] as? Bool)!
+    }
+    
+    static func resetRecommendationsRefetchMetadata() -> Void {
+        let defaultsKey = "refetchMetadata"
+        let defaults = UserDefaults.standard
+        var refetchMetadata = defaults.object(forKey: defaultsKey) as! Dictionary<String, Dictionary<String, Any>>
+
+        refetchMetadata["recommendations"] = ["shouldRefetch": false, "refetchedAt": NSDate()]
+        defaults.set(refetchMetadata, forKey: defaultsKey)
+    }
+    
+    static func storeFetchedRecommendations(data: JSON, completion: @escaping (_ error: Error?, _ data: JSON?) -> Void) -> Void {
+        let realm = try! Realm()
+        print("Storing fetched recommendations")
+        do {
+            try realm.write {
+                for recommendation in data["data"].arrayValue {
+                    let newRecommendation = Recommendation()
+                    newRecommendation.yelpId = recommendation["id"].stringValue
+                    newRecommendation.name = recommendation["name"].stringValue
+                    newRecommendation.imageUrl = recommendation["image_url"].stringValue
+                    newRecommendation.isClosed = recommendation["is_closed"].boolValue
+                    newRecommendation.location = (recommendation["location"]["display_address"].arrayObject! as! [String]).joined(separator: " ")
+                    newRecommendation.price = recommendation["price"].stringValue
+                    newRecommendation.url = recommendation["url"].stringValue
+
+                    realm.add(newRecommendation)
+                }
+            }
+        } catch {
+            print("Error storing fetched recommendations.")
+        }
+        
+        let recommendations = realm.objects(Recommendation.self)
+
+        print(recommendations)
+    }
+    
+    func getRecommendations(withPage page: Int, completion: @escaping (_ error: Error?, _ data: JSON?) -> Void) -> Void {
+        if ScoutRequest.shouldRefetchRecommendations() {
+            self.compose(authenticated: true,
+                         path: "/recommendations",
+                         method: .get,
+                         params: [:]) { (error, data) in
+                            if error == nil {
+                                ScoutRequest.storeFetchedRecommendations(data: data!, completion: completion)
+                            } else {
+                                completion(error, nil)
+                            }
+            }
+        } else {
+
+        }
+    }
+    
+    // MARK: - Visits API
+    static func shouldRefetchVisits() -> Bool {
+        let defualtsKey = "refetchMetadata"
+        let defaults = UserDefaults.standard
+        let refetchMetadata = defaults.object(forKey: defualtsKey) as! Dictionary<String, Dictionary<String, Any>>
+        
+        return (refetchMetadata["visits"]!["shouldRefetch"] as? Bool)!
+    }
+    
+    static func resetVisitsRefetchMetadata() -> Void {
+        let defaultsKey = "refetchMetadata"
+        let defaults = UserDefaults.standard
+        var refetchMetadata = defaults.object(forKey: defaultsKey) as! Dictionary<String, Dictionary<String, Any>>
+        
+        refetchMetadata["visits"] = ["shouldRefetch": false, "refetchedAt": NSDate()]
+        defaults.set(refetchMetadata, forKey: defaultsKey)
+    }
+    
+    
     func login(withUsernameOrEmail usernameOrEmail: String, password: String, completion: @escaping (_ error: Error?, _ data: JSON?) -> Void) -> Void {
         self.compose(authenticated: false,
                      path: "/auth/login",
@@ -42,15 +124,7 @@ class ScoutRequest {
                      params: ["username": username, "email": email, "password": password],
                      completion: completion)
     }
-    
-    func getRecommendations(withPage page: Int, completion: @escaping (_ error: Error?, _ data: JSON?) -> Void) -> Void {
-        self.compose(authenticated: true,
-                     path: "/recommendations",
-                     method: .get,
-                     params: ["page": page],
-                     encoding: URLEncoding(destination: .queryString),
-                     completion: completion)
-    }
+
     
     func getPlacesToDiscover(withCoords coords: Dictionary<String, Double>, completion: @escaping (_ error: Error?, _ data: JSON?) -> Void) -> Void {
         self.compose(authenticated: true,
@@ -61,11 +135,12 @@ class ScoutRequest {
                      completion: completion)
     }
     
-    func getVisits(completion: @escaping (_ error: Error?, _ data: JSON?) -> Void) -> Void {
+    func getVisits(withPage page: Int, completion: @escaping (_ error: Error?, _ data: JSON?) -> Void) -> Void {
         self.compose(authenticated: true,
                      path: "/visits",
                      method: .get,
-                     params: [:],
+                     params: ["page": page],
+                     encoding: URLEncoding(destination: .queryString),
                      completion: completion)
     }
     

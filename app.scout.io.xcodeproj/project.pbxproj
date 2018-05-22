@@ -27,6 +27,9 @@
 		33C545D420A525D200D12766 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C545D320A525D200D12766 /* HomeViewController.swift */; };
 		33C545D620A525E500D12766 /* VisitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C545D520A525E500D12766 /* VisitsViewController.swift */; };
 		33C545DC20A526C800D12766 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C545DB20A526C800D12766 /* SettingsViewController.swift */; };
+		33D1AFF120AA9A0D00222A15 /* VisitsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D1AFF020AA9A0D00222A15 /* VisitsTableViewCell.swift */; };
+		33F015A820B3C4E90085680A /* Recommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F015A720B3C4E90085680A /* Recommendation.swift */; };
+		33F015AA20B3C9F30085680A /* Visit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F015A920B3C9F30085680A /* Visit.swift */; };
 		40DBED439F6958D7527A25BD /* Pods_app_scout_io.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932023F08C0BDB5C556C8940 /* Pods_app_scout_io.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +58,9 @@
 		33C545D320A525D200D12766 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		33C545D520A525E500D12766 /* VisitsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitsViewController.swift; sourceTree = "<group>"; };
 		33C545DB20A526C800D12766 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		33D1AFF020AA9A0D00222A15 /* VisitsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitsTableViewCell.swift; sourceTree = "<group>"; };
+		33F015A720B3C4E90085680A /* Recommendation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recommendation.swift; sourceTree = "<group>"; };
+		33F015A920B3C9F30085680A /* Visit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Visit.swift; sourceTree = "<group>"; };
 		932023F08C0BDB5C556C8940 /* Pods_app_scout_io.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_app_scout_io.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8CA601219C6382185C26BDE /* Pods-app.scout.io.debug(development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app.scout.io.debug(development).xcconfig"; path = "Pods/Target Support Files/Pods-app.scout.io/Pods-app.scout.io.debug(development).xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,6 +77,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		33656A9D20ABBD2500C721FB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				33F015A720B3C4E90085680A /* Recommendation.swift */,
+				33F015A920B3C9F30085680A /* Visit.swift */,
+			);
+			name = Model;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		336E344C20A4E4DA00FA47A0 = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +110,7 @@
 			children = (
 				33B76B5B20A4E7A9005ADC95 /* Services */,
 				33B76B5A20A4E79E005ADC95 /* Views */,
+				33656A9D20ABBD2500C721FB /* Model */,
 				33B76B5920A4E795005ADC95 /* Controller */,
 				336E345F20A4E4DB00FA47A0 /* Assets.xcassets */,
 				336E345820A4E4DA00FA47A0 /* AppDelegate.swift */,
@@ -145,17 +162,26 @@
 		33C545D220A525B000D12766 /* HomeStoryboard */ = {
 			isa = PBXGroup;
 			children = (
+				33D1AFEF20AA980700222A15 /* ViewCells */,
+				33C545D520A525E500D12766 /* VisitsViewController.swift */,
 				33C545D320A525D200D12766 /* HomeViewController.swift */,
-				33174A8120A9DA2000EEBB66 /* HomeTableViewCell.swift */,
-				3348F9C220A5803E00ECEB3D /* ImageCollectionViewCell.swift */,
 				335E36CF20A695CE00070814 /* YelpWebViewController.swift */,
 				335E36D120A6D33B00070814 /* AddToVisitsViewController.swift */,
 				3308A26620A851C700F1C72F /* PlacesViewController.swift */,
 				33C545DB20A526C800D12766 /* SettingsViewController.swift */,
-				33C545D520A525E500D12766 /* VisitsViewController.swift */,
 				33174A7E20A9D28400EEBB66 /* AuthenticatedViewController.swift */,
 			);
 			path = HomeStoryboard;
+			sourceTree = "<group>";
+		};
+		33D1AFEF20AA980700222A15 /* ViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				33D1AFF020AA9A0D00222A15 /* VisitsTableViewCell.swift */,
+				33174A8120A9DA2000EEBB66 /* HomeTableViewCell.swift */,
+				3348F9C220A5803E00ECEB3D /* ImageCollectionViewCell.swift */,
+			);
+			path = ViewCells;
 			sourceTree = "<group>";
 		};
 		7DA99B15C468641A99D2045B /* Pods */ = {
@@ -258,11 +284,13 @@
 				"${BUILT_PRODUCTS_DIR}/DynamicBlurView/DynamicBlurView.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
 				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
+				"${BUILT_PRODUCTS_DIR}/TimelineTableViewCell/TimelineTableViewCell.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -270,11 +298,13 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicBlurView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkeletonView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TimelineTableViewCell.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -310,13 +340,16 @@
 				33B76B6020A4E898005ADC95 /* LoginViewController.swift in Sources */,
 				33174A8220A9DA2000EEBB66 /* HomeTableViewCell.swift in Sources */,
 				33174A7F20A9D28400EEBB66 /* AuthenticatedViewController.swift in Sources */,
+				33F015AA20B3C9F30085680A /* Visit.swift in Sources */,
 				33C545DC20A526C800D12766 /* SettingsViewController.swift in Sources */,
 				335E36D020A695CE00070814 /* YelpWebViewController.swift in Sources */,
 				33C545D620A525E500D12766 /* VisitsViewController.swift in Sources */,
 				33B76B5E20A4E86C005ADC95 /* WelcomeViewController.swift in Sources */,
+				33F015A820B3C4E90085680A /* Recommendation.swift in Sources */,
 				3348F9B820A54B0600ECEB3D /* ScoutRequest.swift in Sources */,
 				3308A26720A851C700F1C72F /* PlacesViewController.swift in Sources */,
 				3348F9C320A5803E00ECEB3D /* ImageCollectionViewCell.swift in Sources */,
+				33D1AFF120AA9A0D00222A15 /* VisitsTableViewCell.swift in Sources */,
 				335E36D220A6D33B00070814 /* AddToVisitsViewController.swift in Sources */,
 				33B76B6220A4E8AA005ADC95 /* SignupViewController.swift in Sources */,
 				336E345920A4E4DA00FA47A0 /* AppDelegate.swift in Sources */,
