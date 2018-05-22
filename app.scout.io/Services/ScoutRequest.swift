@@ -36,7 +36,7 @@ class ScoutRequest {
 
         return (refetchMetadata["recommendations"]!["shouldRefetch"] as? Bool)!
     }
-    
+
     static func resetRecommendationsRefetchMetadata() -> Void {
         let defaultsKey = "refetchMetadata"
         let defaults = UserDefaults.standard
@@ -46,11 +46,15 @@ class ScoutRequest {
         defaults.set(refetchMetadata, forKey: defaultsKey)
     }
     
-    static func storeFetchedRecommendations(data: JSON, completion: @escaping (_ error: Error?, _ data: JSON?) -> Void) -> Void {
+    static func getRefreshedRecommendations(data: JSON, completion: @escaping (_ error: Error?, _ data: Results<Recommendation>?) -> Void) -> Void {
         let realm = try! Realm()
-        print("Storing fetched recommendations")
+
         do {
             try realm.write {
+                // Delete current recommendations
+                realm.delete(realm.objects(Recommendation.self))
+                
+                
                 for recommendation in data["data"].arrayValue {
                     let newRecommendation = Recommendation()
                     newRecommendation.yelpId = recommendation["id"].stringValue
@@ -64,29 +68,93 @@ class ScoutRequest {
                     realm.add(newRecommendation)
                 }
             }
-        } catch {
+        } catch let error {
             print("Error storing fetched recommendations.")
+            completion(error, nil)
         }
-        
-        let recommendations = realm.objects(Recommendation.self)
 
-        print(recommendations)
+        let recommendations = realm.objects(Recommendation.self)
+        completion(nil, recommendations)
     }
     
-    func getRecommendations(withPage page: Int, completion: @escaping (_ error: Error?, _ data: JSON?) -> Void) -> Void {
+    func getRecommendations(withPage page: Int, completion: @escaping (_ error: Error?, _ data: Results<Recommendation>?) -> Void) -> Void {
         if ScoutRequest.shouldRefetchRecommendations() {
-            self.compose(authenticated: true,
-                         path: "/recommendations",
-                         method: .get,
-                         params: [:]) { (error, data) in
-                            if error == nil {
-                                ScoutRequest.storeFetchedRecommendations(data: data!, completion: completion)
-                            } else {
-                                completion(error, nil)
-                            }
+            self.compose(authenticated: true, path: "/recommendations", method: .get, params: [:]) { (error, data) in
+                if error == nil {
+                    ScoutRequest.resetRecommendationsRefetchMetadata()
+                    ScoutRequest.getRefreshedRecommendations(data: data!, completion: completion)
+                } else {
+                    completion(error, nil)
+                }
             }
         } else {
+            let realm = try! Realm()
 
+            completion(nil, realm.objects(Recommendation.self))
+        }
+    }
+    
+    // MARK: - Discover API
+    static func shouldRefetchDiscoveries() -> Bool {
+        let defualtsKey = "refetchMetadata"
+        let defaults = UserDefaults.standard
+        let refetchMetadata = defaults.object(forKey: defualtsKey) as! Dictionary<String, Dictionary<String, Any>>
+        
+        return (refetchMetadata["discoveries"]!["shouldRefetch"] as? Bool)!
+    }
+    
+    static func resetDiscoveriesRefetchMetadata() -> Void {
+        let defaultsKey = "refetchMetadata"
+        let defaults = UserDefaults.standard
+        var refetchMetadata = defaults.object(forKey: defaultsKey) as! Dictionary<String, Dictionary<String, Any>>
+        
+        refetchMetadata["discoveries"] = ["shouldRefetch": false, "refetchedAt": NSDate()]
+        defaults.set(refetchMetadata, forKey: defaultsKey)
+    }
+    
+    static func getRefreshedDiscoveries(data: JSON, completion: @escaping (_ error: Error?, _ data: Results<Discover>?) -> Void) -> Void {
+        let realm = try! Realm()
+        
+        do {
+            try realm.write {
+                realm.delete(realm.objects(Discover.self))
+                for discovery in data["data"].arrayValue {
+                    let newDiscovery = Discover()
+                    newDiscovery.yelpId = discovery["id"].stringValue
+                    newDiscovery.name = discovery["name"].stringValue
+                    newDiscovery.imageUrl = discovery["image_url"].stringValue
+                    newDiscovery.isClosed = discovery["is_closed"].boolValue
+                    newDiscovery.location = (discovery["location"]["display_address"].arrayObject! as! [String]).joined(separator: " ")
+                    newDiscovery.price = discovery["price"].stringValue
+                    newDiscovery.url = discovery["url"].stringValue
+                    
+                    realm.add(newDiscovery)
+                }
+            }
+        } catch let error {
+            print("Error storing fetched discoveries.")
+            completion(error, nil)
+        }
+
+        let discoveries = realm.objects(Discover.self)
+        completion(nil, discoveries)
+    }
+    
+    func getPlacesToDiscover(withCoords coords: Dictionary<String, Double>, completion: @escaping (_ error: Error?, _ data: Results<Discover>?) -> Void) -> Void {
+        
+        if ScoutRequest.shouldRefetchDiscoveries() {
+            self.compose(authenticated: true, path: "/discover", method: .get, params: coords, encoding: URLEncoding(destination: .queryString)) { (error, data) in
+                if error == nil {
+                    ScoutRequest.resetDiscoveriesRefetchMetadata()
+                    ScoutRequest.getRefreshedDiscoveries(data: data!, completion: completion)
+                } else {
+                    completion(error, nil)
+                }
+            }
+        } else {
+            let realm = try! Realm()
+            
+            completion(nil, realm.objects(Discover.self))
         }
     }
     
@@ -125,15 +193,6 @@ class ScoutRequest {
                      completion: completion)
     }
 
-    
-    func getPlacesToDiscover(withCoords coords: Dictionary<String, Double>, completion: @escaping (_ error: Error?, _ data: JSON?) -> Void) -> Void {
-        self.compose(authenticated: true,
-                     path: "/discover",
-                     method: .get,
-                     params: coords,
-                     encoding: URLEncoding(destination: .queryString),
-                     completion: completion)
-    }
     
     func getVisits(withPage page: Int, completion: @escaping (_ error: Error?, _ data: JSON?) -> Void) -> Void {
         self.compose(authenticated: true,

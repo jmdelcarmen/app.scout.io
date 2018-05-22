@@ -10,6 +10,7 @@ import UIKit
 import SkeletonView
 import PopupDialog
 import CoreLocation
+import RealmSwift
 
 class HomeViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
@@ -17,8 +18,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
     
-    var recommendationData: [Dictionary<String, Any>]? // Collection data
-    var discoverData: [Dictionary<String, Any>]? // Table data
+    var recommendationData: Results<Recommendation>? // Collection data
+    var discoverData: Results<Discover>? // Table data
     
     var currentCoords: CLLocationCoordinate2D? {
         didSet {
@@ -58,7 +59,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     func loadRecommendations() -> Void {
         ScoutRequest().getRecommendations(withPage: 1) { (error, response) in
             if error == nil {
-                self.recommendationData = (response!["data"].arrayObject as! [Dictionary<String, Any>])
+                self.recommendationData = response!
                 self.collectionView.reloadData()
             } else {
                 print(error!)
@@ -74,7 +75,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
 
         ScoutRequest().getPlacesToDiscover(withCoords: coords) { (error, response) in
             if error == nil {
-                self.discoverData = (response!["data"].arrayObject as! [Dictionary<String, Any>])
+                self.discoverData = response!
                 self.tableView.reloadData()
             } else {
                 print(error!)
@@ -82,7 +83,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    func showCellPressedPopup(selectedCellData: Dictionary<String, Any>, pressedCell: Any) -> Void {
+    func showCellPressedPopup(selectedCellData: Object, pressedCell: Any) -> Void {
         let popup = PopupDialog(title: selectedCellData["name"] as? String, message: nil)
         let addToVisitsButton = DefaultButton(title: "Add to visits", height: 60, dismissOnTap: true) {
             self.performSegue(withIdentifier: "addToVisits", sender: pressedCell)
@@ -114,12 +115,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.imageView.layer.masksToBounds = true
         cell.imageView.layer.cornerRadius = 14
 
-        if let item = self.recommendationData?[indexPath.row] {
-            cell.imageView.imageFromServerURL(urlString: item["image_url"] as! String)
+        if let recommendation = self.recommendationData?[indexPath.row] {
+            cell.imageView.imageFromServerURL(urlString: recommendation.imageUrl)
             
             cell.viewContainer.hideSkeleton()
-            cell.labelView.text = item["name"] as? String
-            cell.priceLabelView.text = item["price"] as? String
+            cell.labelView.text = recommendation.name
+            cell.priceLabelView.text = recommendation.price
         } else {
             cell.viewContainer.showAnimatedGradientSkeleton()
         }
@@ -130,8 +131,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = self.collectionView.cellForItem(at: indexPath) as! ImageCollectionViewCell
-        if let item = self.recommendationData?[indexPath.row] {
-            self.showCellPressedPopup(selectedCellData: item, pressedCell: cell)
+        if let recommendation = self.recommendationData?[indexPath.row] {
+            self.showCellPressedPopup(selectedCellData: recommendation, pressedCell: cell)
         }
     }
 }
@@ -146,23 +147,17 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath) as! HomeTableViewCell
         let cellComponents = [cell.placeImageView, cell.placeTitleLabel, cell.placeLocationLabel, cell.placeOpenStatusLabel, cell.placePriceLabel, cell.placeCategoryViewContainer]
         
-        if let item = self.discoverData?[indexPath.row] {
+        if let discovery = self.discoverData?[indexPath.row] {
             for cellComponent in cellComponents {
                 cellComponent?.hideSkeleton()
             }
-            let placeImageURL = item["image_url"] as! String
-            let placeTitle = item["name"] as! String
-            let formattedLocation = ((item["location"] as AnyObject)["display_address"] as! Array).joined(separator: " ")
-            let placeOpenStatusText = item["is_closed"] as! Bool ? "Closed" : "Open"
-            let placeOpenStatusColor = item["is_closed"] as! Bool ? #colorLiteral(red: 0.9215686275, green: 0.231372549, blue: 0.3529411765, alpha: 1) : #colorLiteral(red: 0.1490196078, green: 0.8705882353, blue: 0.5058823529, alpha: 1)
-            let priceText = item["price"] as! String
 
-            cell.placeImageView.imageFromServerURL(urlString: placeImageURL)
-            cell.placeTitleLabel.text = placeTitle
-            cell.placeLocationLabel.text = formattedLocation
-            cell.placeOpenStatusLabel.text = placeOpenStatusText
-            cell.placeOpenStatusLabel.textColor = placeOpenStatusColor
-            cell.placePriceLabel.text = priceText
+            cell.placeImageView.imageFromServerURL(urlString: discovery.imageUrl)
+            cell.placeTitleLabel.text = discovery.name
+            cell.placeLocationLabel.text = discovery.location
+            cell.placeOpenStatusLabel.text = discovery.isClosed ? "Closed" : "Open"
+            cell.placeOpenStatusLabel.textColor = discovery.isClosed ? #colorLiteral(red: 0.9215686275, green: 0.231372549, blue: 0.3529411765, alpha: 1) : #colorLiteral(red: 0.1490196078, green: 0.8705882353, blue: 0.5058823529, alpha: 1)
+            cell.placePriceLabel.text = discovery.price
         } else {
             for cellComponent in cellComponents {
                 cellComponent?.showAnimatedGradientSkeleton()
@@ -187,7 +182,7 @@ extension HomeViewController: YelpWebViewControllerDelegate, AddToVisitsViewCont
         case "viewOnYelp":
             let destinationVC = segue.destination as! YelpWebViewController
             let cellIndexPath = self.collectionView.indexPath(for: sender as! UICollectionViewCell)!
-            let yelpId = self.recommendationData?[cellIndexPath.row]["id"] as! String
+            let yelpId = self.recommendationData?[cellIndexPath.row].yelpId
 
             destinationVC.delegate = self
             destinationVC.yelpId = yelpId
@@ -195,21 +190,20 @@ extension HomeViewController: YelpWebViewControllerDelegate, AddToVisitsViewCont
             let senderIsTypeHomeTableViewCell = type(of: sender!) == type(of: HomeTableViewCell())
             let senderIsTypeImageCollectionViewCell = type(of: sender!) == type(of: ImageCollectionViewCell())
             var cellIndexPath = IndexPath()
-            var dataSource = [Dictionary<String, Any>]()
+            var yelpId = String()
             
             if senderIsTypeHomeTableViewCell {
                 cellIndexPath = self.tableView.indexPath(for: sender as! UITableViewCell)!
-                dataSource = self.discoverData!
+                yelpId = self.discoverData![cellIndexPath.row].yelpId
+                
             } else if senderIsTypeImageCollectionViewCell {
                 cellIndexPath = self.collectionView.indexPath(for: sender as! UICollectionViewCell)!
-                dataSource = self.recommendationData!
+                yelpId = self.recommendationData![cellIndexPath.row].yelpId
             } else {
                 print("Unidentified sender for addToVisits segue")
             }
 
             let destinationVC = segue.destination as! AddToVisitsViewController
-            let yelpId = dataSource[cellIndexPath.row]["id"] as! String
-
             destinationVC.delegate = self
             destinationVC.yelpId = yelpId
         default: break

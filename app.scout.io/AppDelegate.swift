@@ -40,11 +40,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Error instantiating Realm")
         }
         
+//        print(Realm.Configuration.defaultConfiguration.fileURL)
+//        defaults.removeObject(forKey: "refetchMetadata")
+        
         let defaults = UserDefaults.standard
-        defaults.removeObject(forKey: "refetchMetadata")
+
         if defaults.object(forKey: "refetchMetadata") == nil {
             let dict = [
                 "recommendations": ["shouldRefetch": true, "refetchedAt": NSDate()],
+                "discoveries": ["shouldRefetch": true, "refetchedAt": NSDate()],
                 "visits": ["shouldRefetch": true, "refetchedAt": NSDate()],
             ]
 
