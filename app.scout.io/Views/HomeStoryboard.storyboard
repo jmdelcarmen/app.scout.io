@@ -363,39 +363,23 @@
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R37-a7-Y8B">
-                                                            <rect key="frame" x="95" y="56" width="230.5" height="20"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cat1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Db-SR-vne">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="17"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.90491224315068497" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cat1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fg3-Av-czF">
-                                                                    <rect key="frame" x="38" y="0.0" width="30" height="17"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.90491224319999997" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="20" id="Wcd-uJ-acK"/>
-                                                            </constraints>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$$$$$" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Xe-gj-hxr">
+                                                            <rect key="frame" x="327" y="56" width="40" height="20"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                                            <color key="textColor" red="0.0" green="0.70816674319999995" blue="0.41960784309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
-                                                        </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$$$$$" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Xe-gj-hxr">
-                                                            <rect key="frame" x="333.5" y="56" width="33.5" height="20"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVL-2s-0a6">
+                                                            <rect key="frame" x="95" y="56" width="224" height="19"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="20" id="DEp-ie-rNg"/>
+                                                                <constraint firstAttribute="height" constant="19" id="JbG-FN-f08"/>
+                                                                <constraint firstAttribute="width" constant="224" id="uqf-aB-W1X"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                                                            <color key="textColor" red="0.0" green="0.70816674319999995" blue="0.41960784309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                            <color key="textColor" white="0.0" alpha="0.90025684930000005" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -405,7 +389,7 @@
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="Xur-lq-Rg7" firstAttribute="top" secondItem="O3F-VT-YPX" secondAttribute="bottom" constant="-1" id="6zx-Gj-vjC"/>
-                                                        <constraint firstAttribute="bottom" secondItem="R37-a7-Y8B" secondAttribute="bottom" constant="4" id="7DM-xH-DmJ"/>
+                                                        <constraint firstItem="6Xe-gj-hxr" firstAttribute="leading" secondItem="jVL-2s-0a6" secondAttribute="trailing" constant="8" id="99g-4g-YHd"/>
                                                         <constraint firstItem="Xur-lq-Rg7" firstAttribute="leading" secondItem="QOB-2t-8YE" secondAttribute="trailing" constant="8" id="EfV-S7-UIF"/>
                                                         <constraint firstAttribute="trailing" secondItem="DeS-Yv-yxb" secondAttribute="trailing" constant="8" id="Ewo-g3-Syv"/>
                                                         <constraint firstAttribute="trailing" secondItem="Xur-lq-Rg7" secondAttribute="trailing" constant="8" id="MUk-dE-9we"/>
@@ -413,12 +397,13 @@
                                                         <constraint firstItem="DeS-Yv-yxb" firstAttribute="leading" secondItem="O3F-VT-YPX" secondAttribute="trailing" constant="8" id="OX5-ZW-7hN"/>
                                                         <constraint firstItem="O3F-VT-YPX" firstAttribute="top" secondItem="tUa-Ut-BDC" secondAttribute="top" constant="4" id="Q4s-jY-bxp"/>
                                                         <constraint firstAttribute="height" constant="80" id="QVC-Tz-UV9"/>
-                                                        <constraint firstAttribute="trailing" secondItem="6Xe-gj-hxr" secondAttribute="trailing" constant="8" id="RAK-Jh-qss"/>
+                                                        <constraint firstItem="6Xe-gj-hxr" firstAttribute="top" secondItem="Xur-lq-Rg7" secondAttribute="bottom" constant="19" id="Tsc-MZ-mMO"/>
+                                                        <constraint firstAttribute="bottom" secondItem="jVL-2s-0a6" secondAttribute="bottom" constant="5" id="Yad-4N-gmv"/>
                                                         <constraint firstItem="QOB-2t-8YE" firstAttribute="leading" secondItem="tUa-Ut-BDC" secondAttribute="leading" constant="15" id="Yt0-ey-tmw"/>
-                                                        <constraint firstAttribute="bottom" secondItem="6Xe-gj-hxr" secondAttribute="bottom" constant="4" id="d9T-Kg-evV"/>
-                                                        <constraint firstItem="6Xe-gj-hxr" firstAttribute="leading" secondItem="R37-a7-Y8B" secondAttribute="trailing" constant="8" id="fMY-lc-Oue"/>
+                                                        <constraint firstItem="jVL-2s-0a6" firstAttribute="leading" secondItem="QOB-2t-8YE" secondAttribute="trailing" constant="8" id="ae2-hQ-DY0"/>
                                                         <constraint firstItem="DeS-Yv-yxb" firstAttribute="top" secondItem="tUa-Ut-BDC" secondAttribute="top" constant="4" id="j9h-MX-vGK"/>
-                                                        <constraint firstItem="R37-a7-Y8B" firstAttribute="leading" secondItem="QOB-2t-8YE" secondAttribute="trailing" constant="8" id="o6m-47-8Mm"/>
+                                                        <constraint firstAttribute="trailing" secondItem="6Xe-gj-hxr" secondAttribute="trailing" constant="8" id="r1v-ou-Kwk"/>
+                                                        <constraint firstAttribute="bottom" secondItem="6Xe-gj-hxr" secondAttribute="bottom" constant="4" id="uPt-j0-C2C"/>
                                                         <constraint firstItem="QOB-2t-8YE" firstAttribute="top" secondItem="tUa-Ut-BDC" secondAttribute="top" constant="4" id="xEx-aV-4st"/>
                                                     </constraints>
                                                 </view>
@@ -430,7 +415,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="placeCategoryViewContainer" destination="R37-a7-Y8B" id="4wu-qJ-YDj"/>
+                                            <outlet property="placeCategoryLabel" destination="jVL-2s-0a6" id="vIW-7l-LHp"/>
                                             <outlet property="placeImageView" destination="QOB-2t-8YE" id="tLq-9u-To0"/>
                                             <outlet property="placeLocationLabel" destination="Xur-lq-Rg7" id="6pD-4G-U3b"/>
                                             <outlet property="placeOpenStatusLabel" destination="DeS-Yv-yxb" id="W4c-xh-IgL"/>
