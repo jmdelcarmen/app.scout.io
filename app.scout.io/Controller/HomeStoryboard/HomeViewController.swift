@@ -145,7 +145,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath) as! HomeTableViewCell
-        let cellComponents = [cell.placeImageView, cell.placeTitleLabel, cell.placeLocationLabel, cell.placeOpenStatusLabel, cell.placePriceLabel, cell.placeCategoryViewContainer]
+        let cellComponents = [cell.placeImageView,
+                              cell.placeTitleLabel,
+                              cell.placeLocationLabel,
+                              cell.placeOpenStatusLabel,
+                              cell.placePriceLabel,
+                              cell.placeCategoriesLabel]
         
         if let discovery = self.discoverData?[indexPath.row] {
             for cellComponent in cellComponents {
@@ -157,7 +162,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             cell.placeLocationLabel.text = discovery.location
             cell.placeOpenStatusLabel.text = discovery.isClosed ? "Closed" : "Open"
             cell.placeOpenStatusLabel.textColor = discovery.isClosed ? #colorLiteral(red: 0.9215686275, green: 0.231372549, blue: 0.3529411765, alpha: 1) : #colorLiteral(red: 0.1490196078, green: 0.8705882353, blue: 0.5058823529, alpha: 1)
-            cell.placePriceLabel.text = discovery.price
+            cell.placePriceLabel.text = discovery.price    
         } else {
             for cellComponent in cellComponents {
                 cellComponent?.showAnimatedGradientSkeleton()

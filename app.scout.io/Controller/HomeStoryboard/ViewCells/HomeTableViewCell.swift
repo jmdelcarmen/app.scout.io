@@ -14,8 +14,8 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var placeLocationLabel: UILabel!
     @IBOutlet weak var placeOpenStatusLabel: UILabel!
     @IBOutlet weak var placePriceLabel: UILabel!
-    @IBOutlet weak var placeCategoryViewContainer: UIView!
-
+    @IBOutlet weak var placeCategoriesLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

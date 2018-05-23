@@ -149,7 +149,8 @@ class ScoutRequest {
                     newDiscovery.location = (discovery["location"]["display_address"].arrayObject! as! [String]).joined(separator: " ")
                     newDiscovery.price = discovery["price"].stringValue
                     newDiscovery.url = discovery["url"].stringValue
-                    
+                    newDiscovery.categories = (discovery["categories"].arrayObject as! [Dictionary<String, String>]).map({$0["title"]!}).joined(separator: ", ")
+
                     realm.add(newDiscovery)
                 }
             }
@@ -209,8 +210,7 @@ class ScoutRequest {
                     newVisit.name = visit["data"]["name"].stringValue
                     newVisit.yelpId = visit["data"]["id"].stringValue
                     newVisit.satisfaction = visit["satisfaction"].intValue
-//                    newVisit.attendDate = visit["atted_date"].
-                    // TODO:
+                    // TODO: newVisit.attendDate = visit["atted_date"].
                     realm.add(newVisit)
                 }
             }

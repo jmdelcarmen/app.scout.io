@@ -19,4 +19,5 @@ class Discover: Object {
     @objc dynamic var location: String = ""
     @objc dynamic var price: String = ""
     @objc dynamic var url: String = ""
+    @objc dynamic var categories: String = ""
 }
