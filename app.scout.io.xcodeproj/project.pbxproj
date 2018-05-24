@@ -19,6 +19,9 @@
 		336E345920A4E4DA00FA47A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336E345820A4E4DA00FA47A0 /* AppDelegate.swift */; };
 		336E346020A4E4DB00FA47A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 336E345F20A4E4DB00FA47A0 /* Assets.xcassets */; };
 		336E346320A4E4DB00FA47A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 336E346120A4E4DB00FA47A0 /* LaunchScreen.storyboard */; };
+		33B3E10A20B66621001484D1 /* RealmConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B3E10920B66621001484D1 /* RealmConfig.swift */; };
+		33B3E10C20B6663A001484D1 /* UserDefaultsConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B3E10B20B6663A001484D1 /* UserDefaultsConfig.swift */; };
+		33B3E10E20B6664C001484D1 /* KeyChainConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B3E10D20B6664C001484D1 /* KeyChainConfig.swift */; };
 		33B76B5E20A4E86C005ADC95 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76B5D20A4E86C005ADC95 /* WelcomeViewController.swift */; };
 		33B76B6020A4E898005ADC95 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76B5F20A4E898005ADC95 /* LoginViewController.swift */; };
 		33B76B6220A4E8AA005ADC95 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76B6120A4E8AA005ADC95 /* SignupViewController.swift */; };
@@ -31,11 +34,12 @@
 		33F015A820B3C4E90085680A /* Recommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F015A720B3C4E90085680A /* Recommendation.swift */; };
 		33F015AA20B3C9F30085680A /* Visit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F015A920B3C9F30085680A /* Visit.swift */; };
 		33F015AE20B3E0280085680A /* Discover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F015AD20B3E0280085680A /* Discover.swift */; };
-		40DBED439F6958D7527A25BD /* Pods_app_scout_io.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932023F08C0BDB5C556C8940 /* Pods_app_scout_io.framework */; };
+		A4F0FAB51E3CD23A5D5E509B /* Pods_app_scout_io.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24D8181B9831725A7FE9D7B0 /* Pods_app_scout_io.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		329241BF56DBE9106028DF2A /* Pods-app.scout.io.release(development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app.scout.io.release(development).xcconfig"; path = "Pods/Target Support Files/Pods-app.scout.io/Pods-app.scout.io.release(development).xcconfig"; sourceTree = "<group>"; };
+		20741C902ED1078DB2FB7FB3 /* Pods-app.scout.io.release(development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app.scout.io.release(development).xcconfig"; path = "Pods/Target Support Files/Pods-app.scout.io/Pods-app.scout.io.release(development).xcconfig"; sourceTree = "<group>"; };
+		24D8181B9831725A7FE9D7B0 /* Pods_app_scout_io.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_app_scout_io.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3308A26620A851C700F1C72F /* PlacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
 		33174A7E20A9D28400EEBB66 /* AuthenticatedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedViewController.swift; sourceTree = "<group>"; };
 		33174A8120A9DA2000EEBB66 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
@@ -51,6 +55,9 @@
 		336E345F20A4E4DB00FA47A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		336E346220A4E4DB00FA47A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		336E346420A4E4DB00FA47A0 /* Production.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Production.plist; sourceTree = "<group>"; };
+		33B3E10920B66621001484D1 /* RealmConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmConfig.swift; sourceTree = "<group>"; };
+		33B3E10B20B6663A001484D1 /* UserDefaultsConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsConfig.swift; sourceTree = "<group>"; };
+		33B3E10D20B6664C001484D1 /* KeyChainConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainConfig.swift; sourceTree = "<group>"; };
 		33B76B5D20A4E86C005ADC95 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		33B76B5F20A4E898005ADC95 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		33B76B6120A4E8AA005ADC95 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
@@ -63,8 +70,7 @@
 		33F015A720B3C4E90085680A /* Recommendation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recommendation.swift; sourceTree = "<group>"; };
 		33F015A920B3C9F30085680A /* Visit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Visit.swift; sourceTree = "<group>"; };
 		33F015AD20B3E0280085680A /* Discover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discover.swift; sourceTree = "<group>"; };
-		932023F08C0BDB5C556C8940 /* Pods_app_scout_io.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_app_scout_io.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F8CA601219C6382185C26BDE /* Pods-app.scout.io.debug(development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app.scout.io.debug(development).xcconfig"; path = "Pods/Target Support Files/Pods-app.scout.io/Pods-app.scout.io.debug(development).xcconfig"; sourceTree = "<group>"; };
+		853F6CBDF243789DF3CB854F /* Pods-app.scout.io.debug(development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app.scout.io.debug(development).xcconfig"; path = "Pods/Target Support Files/Pods-app.scout.io/Pods-app.scout.io.debug(development).xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,7 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40DBED439F6958D7527A25BD /* Pods_app_scout_io.framework in Frameworks */,
+				A4F0FAB51E3CD23A5D5E509B /* Pods_app_scout_io.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,8 +101,8 @@
 			children = (
 				336E345720A4E4DA00FA47A0 /* app.scout.io */,
 				336E345620A4E4DA00FA47A0 /* Products */,
-				7DA99B15C468641A99D2045B /* Pods */,
-				880E8C4B0A25538ABC09318F /* Frameworks */,
+				79ED403A401A6A32CFF00BEC /* Pods */,
+				4855331C35D6EFBC6BBEA2F5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,18 +117,29 @@
 		336E345720A4E4DA00FA47A0 /* app.scout.io */ = {
 			isa = PBXGroup;
 			children = (
+				33B3E10820B6660A001484D1 /* Config */,
 				33B76B5B20A4E7A9005ADC95 /* Services */,
 				33B76B5A20A4E79E005ADC95 /* Views */,
 				33656A9D20ABBD2500C721FB /* Model */,
 				33B76B5920A4E795005ADC95 /* Controller */,
 				336E345F20A4E4DB00FA47A0 /* Assets.xcassets */,
 				336E345820A4E4DA00FA47A0 /* AppDelegate.swift */,
-				336E346420A4E4DB00FA47A0 /* Production.plist */,
 				3348F9C020A5531400ECEB3D /* Development.plist */,
+				336E346420A4E4DB00FA47A0 /* Production.plist */,
 				3348F9BB20A54EC400ECEB3D /* Development.xcconfig */,
 				3348F9BD20A54EFD00ECEB3D /* Production.xcconfig */,
 			);
 			path = app.scout.io;
+			sourceTree = "<group>";
+		};
+		33B3E10820B6660A001484D1 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				33B3E10920B66621001484D1 /* RealmConfig.swift */,
+				33B3E10B20B6663A001484D1 /* UserDefaultsConfig.swift */,
+				33B3E10D20B6664C001484D1 /* KeyChainConfig.swift */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 		33B76B5920A4E795005ADC95 /* Controller */ = {
@@ -187,21 +204,21 @@
 			path = ViewCells;
 			sourceTree = "<group>";
 		};
-		7DA99B15C468641A99D2045B /* Pods */ = {
+		4855331C35D6EFBC6BBEA2F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F8CA601219C6382185C26BDE /* Pods-app.scout.io.debug(development).xcconfig */,
-				329241BF56DBE9106028DF2A /* Pods-app.scout.io.release(development).xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		880E8C4B0A25538ABC09318F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				932023F08C0BDB5C556C8940 /* Pods_app_scout_io.framework */,
+				24D8181B9831725A7FE9D7B0 /* Pods_app_scout_io.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		79ED403A401A6A32CFF00BEC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				853F6CBDF243789DF3CB854F /* Pods-app.scout.io.debug(development).xcconfig */,
+				20741C902ED1078DB2FB7FB3 /* Pods-app.scout.io.release(development).xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,11 +228,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 336E346720A4E4DB00FA47A0 /* Build configuration list for PBXNativeTarget "app.scout.io" */;
 			buildPhases = (
-				5D96A3784AC07B34711F3542 /* [CP] Check Pods Manifest.lock */,
+				C6344DBD0FDE8CB452914679 /* [CP] Check Pods Manifest.lock */,
 				336E345120A4E4DA00FA47A0 /* Sources */,
 				336E345220A4E4DA00FA47A0 /* Frameworks */,
 				336E345320A4E4DA00FA47A0 /* Resources */,
-				4D078818E94AEA4A61ABDEF5 /* [CP] Embed Pods Frameworks */,
+				0BFF71243662F50CA183A822 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -276,7 +293,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4D078818E94AEA4A61ABDEF5 /* [CP] Embed Pods Frameworks */ = {
+		0BFF71243662F50CA183A822 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -314,7 +331,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-app.scout.io/Pods-app.scout.io-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5D96A3784AC07B34711F3542 /* [CP] Check Pods Manifest.lock */ = {
+		C6344DBD0FDE8CB452914679 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -348,12 +365,15 @@
 				33C545DC20A526C800D12766 /* SettingsViewController.swift in Sources */,
 				335E36D020A695CE00070814 /* YelpWebViewController.swift in Sources */,
 				33C545D620A525E500D12766 /* VisitsViewController.swift in Sources */,
+				33B3E10A20B66621001484D1 /* RealmConfig.swift in Sources */,
 				33B76B5E20A4E86C005ADC95 /* WelcomeViewController.swift in Sources */,
 				33F015A820B3C4E90085680A /* Recommendation.swift in Sources */,
 				3348F9B820A54B0600ECEB3D /* ScoutRequest.swift in Sources */,
 				3308A26720A851C700F1C72F /* PlacesViewController.swift in Sources */,
 				3348F9C320A5803E00ECEB3D /* ImageCollectionViewCell.swift in Sources */,
+				33B3E10E20B6664C001484D1 /* KeyChainConfig.swift in Sources */,
 				33D1AFF120AA9A0D00222A15 /* VisitsTableViewCell.swift in Sources */,
+				33B3E10C20B6663A001484D1 /* UserDefaultsConfig.swift in Sources */,
 				335E36D220A6D33B00070814 /* AddToVisitsViewController.swift in Sources */,
 				33B76B6220A4E8AA005ADC95 /* SignupViewController.swift in Sources */,
 				336E345920A4E4DA00FA47A0 /* AppDelegate.swift in Sources */,
@@ -492,7 +512,7 @@
 		};
 		336E346820A4E4DB00FA47A0 /* Debug(Development) */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F8CA601219C6382185C26BDE /* Pods-app.scout.io.debug(development).xcconfig */;
+			baseConfigurationReference = 853F6CBDF243789DF3CB854F /* Pods-app.scout.io.debug(development).xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -512,7 +532,7 @@
 		};
 		336E346920A4E4DB00FA47A0 /* Release(Development) */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 329241BF56DBE9106028DF2A /* Pods-app.scout.io.release(development).xcconfig */;
+			baseConfigurationReference = 20741C902ED1078DB2FB7FB3 /* Pods-app.scout.io.release(development).xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

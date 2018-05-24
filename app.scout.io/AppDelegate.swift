@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import KeychainAccess
-import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,43 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-
-        // Instantiate Keychain
-        let keychain = Keychain(service: Bundle.main.bundleIdentifier!)
-        do {
-            let token = try keychain.get("token")
-            if token != nil {
-                let homeStoryboard = UIStoryboard(name: "HomeStoryboard", bundle: nil)
-                let homeVC = homeStoryboard.instantiateInitialViewController()
-
-                self.window?.rootViewController = homeVC
-            }
-        } catch {
-            print("Error instantiating keychain")
-        }
+        let realmConfig = RealmConfig()
+        realmConfig.start()
         
-        // Instantiate Realm
-        do {
-            _ = try Realm()
-        } catch {
-            print("Error instantiating Realm")
-        }
+        let userDefaultsConfig = UserDefaultsConfig()
+        userDefaultsConfig.start()
         
-//        print(Realm.Configuration.defaultConfiguration.fileURL)
-        
-        
-        let defaults = UserDefaults.standard
-        defaults.removeObject(forKey: "refetchMetadata")
-
-        if defaults.object(forKey: "refetchMetadata") == nil {
-            let dict = [
-                "recommendations": ["shouldRefetch": true, "refetchedAt": NSDate()],
-                "discoveries": ["shouldRefetch": true, "refetchedAt": NSDate()],
-                "visits": ["shouldRefetch": true, "refetchedAt": NSDate()],
-            ]
-
-            defaults.set(dict, forKey: "refetchMetadata")
-        }
+        let keychainConfig = KeyChainConfig(uiWindow: window!)
+        keychainConfig.start()
 
         return true
     }
