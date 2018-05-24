@@ -17,11 +17,11 @@
 		335E36D020A695CE00070814 /* YelpWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335E36CF20A695CE00070814 /* YelpWebViewController.swift */; };
 		335E36D220A6D33B00070814 /* AddToVisitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335E36D120A6D33B00070814 /* AddToVisitsViewController.swift */; };
 		336E345920A4E4DA00FA47A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336E345820A4E4DA00FA47A0 /* AppDelegate.swift */; };
-		336E346020A4E4DB00FA47A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 336E345F20A4E4DB00FA47A0 /* Assets.xcassets */; };
 		336E346320A4E4DB00FA47A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 336E346120A4E4DB00FA47A0 /* LaunchScreen.storyboard */; };
 		33B3E10A20B66621001484D1 /* RealmConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B3E10920B66621001484D1 /* RealmConfig.swift */; };
 		33B3E10C20B6663A001484D1 /* UserDefaultsConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B3E10B20B6663A001484D1 /* UserDefaultsConfig.swift */; };
 		33B3E10E20B6664C001484D1 /* KeyChainConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B3E10D20B6664C001484D1 /* KeyChainConfig.swift */; };
+		33B3E11220B67BA6001484D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33B3E11120B67BA5001484D1 /* Assets.xcassets */; };
 		33B76B5E20A4E86C005ADC95 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76B5D20A4E86C005ADC95 /* WelcomeViewController.swift */; };
 		33B76B6020A4E898005ADC95 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76B5F20A4E898005ADC95 /* LoginViewController.swift */; };
 		33B76B6220A4E8AA005ADC95 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76B6120A4E8AA005ADC95 /* SignupViewController.swift */; };
@@ -52,12 +52,12 @@
 		335E36D120A6D33B00070814 /* AddToVisitsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToVisitsViewController.swift; sourceTree = "<group>"; };
 		336E345520A4E4DA00FA47A0 /* app.scout.io.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = app.scout.io.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		336E345820A4E4DA00FA47A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		336E345F20A4E4DB00FA47A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		336E346220A4E4DB00FA47A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		336E346420A4E4DB00FA47A0 /* Production.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Production.plist; sourceTree = "<group>"; };
 		33B3E10920B66621001484D1 /* RealmConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmConfig.swift; sourceTree = "<group>"; };
 		33B3E10B20B6663A001484D1 /* UserDefaultsConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsConfig.swift; sourceTree = "<group>"; };
 		33B3E10D20B6664C001484D1 /* KeyChainConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainConfig.swift; sourceTree = "<group>"; };
+		33B3E11120B67BA5001484D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		33B76B5D20A4E86C005ADC95 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		33B76B5F20A4E898005ADC95 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		33B76B6120A4E8AA005ADC95 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
@@ -122,8 +122,8 @@
 				33B76B5A20A4E79E005ADC95 /* Views */,
 				33656A9D20ABBD2500C721FB /* Model */,
 				33B76B5920A4E795005ADC95 /* Controller */,
-				336E345F20A4E4DB00FA47A0 /* Assets.xcassets */,
 				336E345820A4E4DA00FA47A0 /* AppDelegate.swift */,
+				33B3E11120B67BA5001484D1 /* Assets.xcassets */,
 				3348F9C020A5531400ECEB3D /* Development.plist */,
 				336E346420A4E4DB00FA47A0 /* Production.plist */,
 				3348F9BB20A54EC400ECEB3D /* Development.xcconfig */,
@@ -282,10 +282,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				336E346320A4E4DB00FA47A0 /* LaunchScreen.storyboard in Resources */,
-				336E346020A4E4DB00FA47A0 /* Assets.xcassets in Resources */,
 				3348F9C120A5531400ECEB3D /* Development.plist in Resources */,
 				33C545D020A513BA00D12766 /* HomeStoryboard.storyboard in Resources */,
 				33B76B6420A4E901005ADC95 /* WelcomeStoryboard.storyboard in Resources */,
+				33B3E11220B67BA6001484D1 /* Assets.xcassets in Resources */,
 				3348F9BC20A54EC400ECEB3D /* Development.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

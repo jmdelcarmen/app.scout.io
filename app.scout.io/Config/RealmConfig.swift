@@ -25,7 +25,7 @@ class RealmConfig {
 
     func getMigrateConfig() -> Realm.Configuration {
     
-        let currentSchemaVersion = 1
+        let currentSchemaVersion = 2
         
         let config = Realm.Configuration(fileURL: Realm.Configuration.defaultConfiguration.fileURL,
                                          inMemoryIdentifier: nil,
@@ -34,10 +34,8 @@ class RealmConfig {
                                          readOnly: false,
                                          schemaVersion: UInt64(currentSchemaVersion),
                                          migrationBlock: { migration, oldSchemaVersion in
-                                            if oldSchemaVersion < currentSchemaVersion {
-                                                migration.enumerateObjects(ofType: Discover.className()) { (oldDiscovery, newDiscovery) in
-                                                    newDiscovery!["categories"] = ""
-                                                }
+                                            migration.enumerateObjects(ofType: Discover.className()) { (oldDiscovery, newDiscovery) in
+                                                newDiscovery!["location"] = ""
                                             }
                                         }, deleteRealmIfMigrationNeeded: true)
         

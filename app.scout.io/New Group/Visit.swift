@@ -14,5 +14,6 @@ class Visit: Object {
     @objc dynamic var attendDate: NSDate = NSDate()
     @objc dynamic var yelpId: String = ""
     @objc dynamic var name: String = ""
+    @objc dynamic var location: String = ""
     @objc dynamic var satisfaction: Int = 0
 }

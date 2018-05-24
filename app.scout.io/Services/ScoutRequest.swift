@@ -210,6 +210,8 @@ class ScoutRequest {
                     newVisit.name = visit["data"]["name"].stringValue
                     newVisit.yelpId = visit["data"]["id"].stringValue
                     newVisit.satisfaction = visit["satisfaction"].intValue
+                    newVisit.location = (visit["data"]["location"]["display_address"].arrayObject! as! [String]).joined(separator: " ")
+
                     // TODO: newVisit.attendDate = visit["atted_date"].
                     realm.add(newVisit)
                 }

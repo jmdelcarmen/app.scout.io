@@ -46,14 +46,23 @@ extension VisitsViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "VisitsTableViewCell", for: indexPath) as! VisitsTableViewCell
 
         if let visit = self.visitsHistory?[indexPath.row] {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MM/dd"
+
             cell.placeLabel.hideSkeleton()
             cell.attendDateLabel.hideSkeleton()
-            
+            cell.placeLocationLabel.hideSkeleton()
+            cell.experienceImageView.hideSkeleton()
+
             cell.placeLabel.text = visit.name
-//            cell.attendDateLabel.text = visit.attendDate
+            cell.placeLocationLabel.text = visit.location
+            cell.attendDateLabel.text = dateFormatter.string(from: visit.attendDate as Date)
+            cell.experienceImageView.image = UIImage(named: "visit-experience-\(visit.satisfaction)")
         } else {
             cell.placeLabel.showSkeleton()
             cell.attendDateLabel.showSkeleton()
+            cell.placeLocationLabel.showSkeleton()
+            cell.experienceImageView.showSkeleton()
         }
 
         return cell

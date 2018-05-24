@@ -10,8 +10,9 @@ import UIKit
 
 class VisitsTableViewCell: UITableViewCell {
     @IBOutlet weak var placeLabel: UILabel!
+    @IBOutlet weak var placeLocationLabel: UILabel!
     @IBOutlet weak var attendDateLabel: UILabel!
-    @IBOutlet weak var satisfactionImage: UIImageView!
+    @IBOutlet weak var experienceImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
